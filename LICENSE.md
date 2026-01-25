@@ -1,6 +1,6 @@
 # License Agreement
 
-**ShyamDuels Plugin - Proprietary Software License**
+**ShyamDuels Plugin – Community Source License**
 
 Copyright © 2026 Shyam Studio. All Rights Reserved.
 
@@ -8,84 +8,113 @@ Copyright © 2026 Shyam Studio. All Rights Reserved.
 
 ## Terms and Conditions
 
-By downloading, installing, or using this software ("ShyamDuels"), you agree to be bound by the terms of this license agreement.
-
-### 1. Grant of License
-
-This license grants you the right to:
-- Use this plugin on Minecraft servers you are authorized to manage
-- Modify configuration files for your personal/server use
+By downloading, installing, or using this software ("ShyamDuels" or the "Software"), you agree to be bound by the terms of this license agreement.
 
 ---
 
-### 2. Restrictions
+## 1. Grant of License
+
+This license grants you the right to:
+
+* Use this plugin on Minecraft servers you are authorized to manage, including monetized or donation-based servers
+* Modify configuration files and the source code for personal or internal server use
+
+---
+
+## 2. Restrictions
 
 **You are expressly prohibited from:**
 
-#### 2.1 Redistribution
-- You may **NOT** redistribute this plugin in any form, whether modified or unmodified
-- You may **NOT** share, upload, or distribute the plugin files to any third party
-- You may **NOT** include this plugin in any compilation, bundle, or collection of plugins
+---
 
-#### 2.2 Commercial Use
-- You may **NOT** sell, resell, or offer this plugin for sale
-- You may **NOT** use this plugin as part of a commercial product or service offered for sale
-- You may **NOT** charge users for access to servers running this plugin without prior written permission from the copyright holder.
+### 2.1 Paid Redistribution and Resale
 
-#### 2.3 Modification and Derivative Works
-- You may **NOT** decompile, reverse engineer, or disassemble the plugin
-- You may **NOT** modify the source code and redistribute the modified version
-- You may **NOT** create derivative works based on this plugin
-- You may **NOT** remove, alter, or obscure any copyright, trademark, or other proprietary notices
-
-#### 2.4 Misrepresentation
-- You may **NOT** claim this plugin as your own work
-- You may **NOT** remove or modify any attribution to the original authors
+* You may **NOT** sell, resell, sublicense, or commercially distribute this plugin or any derivative works
+* You may **NOT** sell access to this plugin itself
+* You may **NOT** sell forked or modified versions of this plugin
+* You may **NOT** include this plugin or derivatives in any paid software bundle or marketplace listing
 
 ---
 
-### 3. Ownership
+### 2.2 Use in Monetized Server Setups
 
-This software and all copies thereof are proprietary to Shyam Studio and title to all copies is retained by Shyam Studio. All applicable rights to patents, copyrights, trademarks, and trade secrets in the software are and shall remain in Shyam Studio.
+You may operate this plugin on monetized Minecraft servers.
 
----
+If this plugin is included in a downloadable server pack, hosting template, or commercial setup, you **must**:
 
-### 4. Termination
-
-This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any term of this license. Upon termination, you must destroy all copies of the software in your possession.
-
----
-
-### 5. Disclaimer of Warranties
-
-THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+* provide a clear and visible link to the official ShyamDuels download page or repository, and
+* state that ShyamDuels is developed and owned by Shyam Studio.
 
 ---
 
-### 6. Limitation of Liability
+### 2.3 Free Redistribution
 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Free redistribution of the unmodified plugin or derivative works is permitted **only** if:
 
----
-
-### 7. Enforcement
-
-Violation of any of the terms of this license may result in:
-- Immediate termination of your license
-- Legal action for damages and injunctive relief
-- Reporting to relevant authorities and platforms
+* this license is included in full;
+* attribution to Shyam Studio is retained;
+* the name “ShyamDuels” and branding are not used for forks without permission.
 
 ---
 
-### 8. Support and Updates
+### 2.4 Modification and Derivative Works
 
-Shyam Studio may, at its sole discretion, provide updates, patches, bug fixes, or technical support for the Software when time and resources permit.
-There is no obligation to provide ongoing maintenance, support, or future updates, and no specific timeframe is guaranteed.
+* You may modify the Software for private or internal use
+* You may distribute modified versions only free of charge and subject to this Agreement
+* You may **NOT** remove or obscure copyright or attribution notices
+* You may **NOT** claim the Software or any derivative work as your own original creation
 
-Any updates or modifications provided shall be considered part of the Software and subject to this Agreement.
+---
 
-### By using this software, you acknowledge that you have read and agree to these terms.
+### 2.5 Misrepresentation
+
+* You may **NOT** present this Software or derivatives as official ShyamDuels releases
+* You may **NOT** imply endorsement by Shyam Studio without written permission
+
+---
+
+## 3. Ownership
+
+This Software and all copies thereof are proprietary to Shyam Studio. Title and all intellectual-property rights remain with Shyam Studio.
+
+---
+
+## 4. Termination
+
+This license remains effective until terminated. Any violation automatically terminates your rights. Upon termination, all copies must be destroyed.
+
+---
+
+## 5. Disclaimer of Warranties
+
+THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+---
+
+## 6. Limitation of Liability
+
+IN NO EVENT SHALL SHYAM STUDIO OR ITS CONTRIBUTORS BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OR INABILITY TO USE THIS SOFTWARE.
+
+---
+
+## 7. Enforcement
+
+Violation of this Agreement may result in:
+
+* termination of rights
+* legal action
+* takedown requests to platforms or hosts
+
+---
+
+## 8. Support and Updates
+
+Shyam Studio may provide updates or support at its discretion. No schedule or obligation is guaranteed.
+
+All updates remain subject to this Agreement.
+
+---
+
+**By using this Software, you acknowledge that you have read and agree to these terms.**
 
 *Last Updated: 25 January 2026*
-
-
