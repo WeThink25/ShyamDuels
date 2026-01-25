@@ -16,6 +16,8 @@ This license grants you the right to:
 - Use this plugin on Minecraft servers you are authorized to manage
 - Modify configuration files for your personal/server use
 
+---
+
 ### 2. Restrictions
 
 **You are expressly prohibited from:**
@@ -40,21 +42,31 @@ This license grants you the right to:
 - You may **NOT** claim this plugin as your own work
 - You may **NOT** remove or modify any attribution to the original authors
 
+---
+
 ### 3. Ownership
 
 This software and all copies thereof are proprietary to Shyam Studio and title to all copies is retained by Shyam Studio. All applicable rights to patents, copyrights, trademarks, and trade secrets in the software are and shall remain in Shyam Studio.
+
+---
 
 ### 4. Termination
 
 This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any term of this license. Upon termination, you must destroy all copies of the software in your possession.
 
+---
+
 ### 5. Disclaimer of Warranties
 
 THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
+---
+
 ### 6. Limitation of Liability
 
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
 
 ### 7. Enforcement
 
@@ -63,7 +75,17 @@ Violation of any of the terms of this license may result in:
 - Legal action for damages and injunctive relief
 - Reporting to relevant authorities and platforms
 
+---
+
+### 8. Support and Updates
+
+Shyam Studio may, at its sole discretion, provide updates, patches, bug fixes, or technical support for the Software when time and resources permit.
+There is no obligation to provide ongoing maintenance, support, or future updates, and no specific timeframe is guaranteed.
+
+Any updates or modifications provided shall be considered part of the Software and subject to this Agreement.
+
 ### By using this software, you acknowledge that you have read and agree to these terms.
 
-*Last Updated: January 2026*
+*Last Updated: 25 January 2026*
+
 
