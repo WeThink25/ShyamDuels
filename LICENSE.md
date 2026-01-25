@@ -2,7 +2,7 @@
 
 **ShyamDuels Plugin - Proprietary Software License**
 
-Copyright © 2026 ShyamDuels. All Rights Reserved.
+Copyright © 2026 Shyam Studio. All Rights Reserved.
 
 ---
 
@@ -28,7 +28,7 @@ This license grants you the right to:
 #### 2.2 Commercial Use
 - You may **NOT** sell, resell, or offer this plugin for sale
 - You may **NOT** use this plugin as part of a commercial product or service offered for sale
-- You may **NOT** charge users for access to servers running this plugin without proper licensing
+- You may **NOT** charge users for access to servers running this plugin without prior written permission from the copyright holder.
 
 #### 2.3 Modification and Derivative Works
 - You may **NOT** decompile, reverse engineer, or disassemble the plugin
@@ -42,7 +42,7 @@ This license grants you the right to:
 
 ### 3. Ownership
 
-This software and all copies thereof are proprietary to ShyamDuels and title to all copies is retained by ShyamDuels. All applicable rights to patents, copyrights, trademarks, and trade secrets in the software are and shall remain in ShyamDuels.
+This software and all copies thereof are proprietary to Shyam Studio and title to all copies is retained by Shyam Studio. All applicable rights to patents, copyrights, trademarks, and trade secrets in the software are and shall remain in Shyam Studio.
 
 ### 4. Termination
 
@@ -63,14 +63,7 @@ Violation of any of the terms of this license may result in:
 - Legal action for damages and injunctive relief
 - Reporting to relevant authorities and platforms
 
-### 8. Governing Law
-
-This agreement shall be governed by and construed in accordance with applicable laws.
-
----
-
-**By using this software, you acknowledge that you have read this agreement, understand it, and agree to be bound by its terms and conditions.**
-
----
+### By using this software, you acknowledge that you have read and agree to these terms.
 
 *Last Updated: January 2026*
+
