@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.Collectors;
 
+@SuppressWarnings("deprecation")
 public class ShyamDuels extends JavaPlugin {
 
     private static ShyamDuels instance;
@@ -47,14 +48,6 @@ public class ShyamDuels extends JavaPlugin {
         FastInvManager.register(this);
 
         saveDefaultConfig();
-
-        dev.piyush.shyamduels.license.LicenseManager licenseManager = new dev.piyush.shyamduels.license.LicenseManager(
-                this);
-        if (!licenseManager.validate()) {
-            getLogger().severe("Plugin disabled due to invalid license!");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
 
         this.configManager = new ConfigManager(this);
         this.guiConfigLoader = new dev.piyush.shyamduels.config.GuiConfigLoader(this);

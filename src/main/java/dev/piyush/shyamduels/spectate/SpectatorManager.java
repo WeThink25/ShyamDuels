@@ -11,12 +11,11 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class SpectatorManager {
 
     private final ShyamDuels plugin;
-    private final Map<UUID, Duel> spectatorToDuel = new ConcurrentHashMap<>();
+    private final Map<UUID, Duel> spectatorToDuel = java.util.Collections.synchronizedMap(new java.util.HashMap<>());
 
     public SpectatorManager(ShyamDuels plugin) {
         this.plugin = plugin;

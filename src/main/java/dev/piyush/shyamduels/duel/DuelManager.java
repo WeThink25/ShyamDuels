@@ -1,4 +1,3 @@
-
 package dev.piyush.shyamduels.duel;
 
 import dev.piyush.shyamduels.ShyamDuels;
@@ -22,6 +21,7 @@ public class DuelManager {
     private final ShyamDuels plugin;
     private final Map<UUID, Duel> activeDuels = new ConcurrentHashMap<>();
     private final Map<UUID, Duel> endingDuels = new ConcurrentHashMap<>();
+
     public void markEnding(Duel duel, int winningTeamNumber) {
         duel.setState(Duel.DuelState.ENDING);
         duel.addRoundWin(winningTeamNumber);
@@ -50,7 +50,7 @@ public class DuelManager {
 
     private void sendTeamTitle(Duel duel, int winTeam, String winKey, int loseTeam, String loseKey) {
         net.kyori.adventure.title.Title.Times times = net.kyori.adventure.title.Title.Times.times(
-                java.time.Duration.ofMillis(200), java.time.Duration.ofMillis(3000), java.time.Duration.ofMillis(500));
+                java.time.Duration.ofMillis(200), java.time.Duration.ofMillis(4000), java.time.Duration.ofMillis(1000));
 
         net.kyori.adventure.text.Component winComp = MessageUtils.parseOrLegacy(MessageUtils.get(winKey), Map.of());
         net.kyori.adventure.text.Component loseComp = MessageUtils.parseOrLegacy(MessageUtils.get(loseKey), Map.of());
@@ -173,7 +173,13 @@ public class DuelManager {
                 invites.remove(uuid);
                 endingDuels.remove(uuid);
                 plugin.getQueueManager().resetPlayerState(p);
-                plugin.getItemManager().giveSpawnItems(p);
+
+                dev.piyush.shyamduels.party.Party party = plugin.getPartyManager().getParty(p);
+                if (party != null) {
+                    plugin.getItemManager().givePartyItems(p, party);
+                } else {
+                    plugin.getItemManager().giveSpawnItems(p);
+                }
             }
         });
         plugin.getSpectatorManager().endSpectateForDuel(duel);
@@ -323,6 +329,7 @@ public class DuelManager {
 
         startDuel(team1, team2, kit, mode, 1);
     }
+
     public void sendInvite(Player sender, Player target, Kit kit, int rounds) {
         if (activeDuels.containsKey(sender.getUniqueId()) || activeDuels.containsKey(target.getUniqueId())) {
             MessageUtils.sendMessage(sender, "duel.already-in-match", Map.of());
@@ -367,6 +374,7 @@ public class DuelManager {
         startDuel(Collections.singletonList(sender), Collections.singletonList(acceptor), data.kit(),
                 QueueMode.ONE_V_ONE, data.rounds());
     }
+
     public void startDuel(Player p1, Player p2, Kit kit, int rounds) {
         startDuel(Collections.singletonList(p1), Collections.singletonList(p2), kit, QueueMode.ONE_V_ONE, rounds);
     }

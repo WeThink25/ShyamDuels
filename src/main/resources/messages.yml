@@ -10,6 +10,8 @@ general:
 gui:
   # Duel Request GUI
   select-kit-title: "&8Select a Kit"
+  kit-selector:
+    title: "Kits {name}"
   duel-request:
     kit-item:
       name: "&e{name}"
@@ -23,6 +25,12 @@ gui:
       lore:
         - "&7First to {wins} wins"
         - "&7Click to select"
+    1:
+      name: "&a1 Round"
+    3:
+      name: "&e3 Rounds"
+    5:
+      name: "&c5 Rounds"
   
   kit-editor:
     messages:

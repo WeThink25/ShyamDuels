@@ -22,6 +22,22 @@ public class DuelListener implements Listener {
     }
 
     @EventHandler
+    public void onDamage(org.bukkit.event.entity.EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player victim) || !(event.getDamager() instanceof Player attacker)) {
+            return;
+        }
+
+        Duel duel = duelManager.getDuel(victim);
+        if (duel == null || !duel.isInProgress()) {
+            return;
+        }
+
+        if (duel.isTeam1(victim) == duel.isTeam1(attacker)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player loser = event.getEntity();
         Duel duel = duelManager.getDuel(loser);
@@ -44,8 +60,14 @@ public class DuelListener implements Listener {
             duelManager.markEnding(duel, winningTeam);
         } else {
             loser.setGameMode(org.bukkit.GameMode.SPECTATOR);
-            if (duel.getArena().getCenter() != null)
-                loser.teleport(duel.getArena().getCenter());
+            plugin.getServer().getScheduler().runTask(plugin, () -> {
+                loser.spigot().respawn();
+                if (duel.getArena().getCenter() != null) {
+                    loser.teleport(duel.getArena().getCenter());
+                }
+                loser.setGameMode(org.bukkit.GameMode.SPECTATOR);
+            });
+            return;
         }
         plugin.getServer().getScheduler().runTask(plugin, () -> loser.spigot().respawn());
     }

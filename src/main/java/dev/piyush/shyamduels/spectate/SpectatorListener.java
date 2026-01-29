@@ -92,4 +92,12 @@ public class SpectatorListener implements Listener {
             }
         });
     }
+
+    @EventHandler
+    public void onTeleport(org.bukkit.event.player.PlayerTeleportEvent e) {
+        if (e.getCause() == org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.SPECTATE
+                && plugin.getSpectatorManager().isSpectating(e.getPlayer())) {
+            e.setCancelled(true);
+        }
+    }
 }

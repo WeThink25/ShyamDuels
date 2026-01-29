@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("deprecation")
 public class ArmorTrimGui extends FastInv {
 
     private ItemStack item;

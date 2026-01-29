@@ -1,7 +1,6 @@
 # ShyamDuels Configuration
 # Version 1.0
 
-license-key: "PUT-YOUR-KEY-HERE"
 
 # Enable debug messages (verbose logging)
 debug: false

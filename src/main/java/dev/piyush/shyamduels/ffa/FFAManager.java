@@ -12,9 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -79,6 +77,7 @@ public class FFAManager {
         }
         FaweUtils.pasteSchematic(arena);
     }
+
     private final Map<UUID, String> playerArenaMap = new ConcurrentHashMap<>();
 
     public boolean isInArena(Player p, Arena arena) {
@@ -166,6 +165,7 @@ public class FFAManager {
         player.setFoodLevel(20);
         player.getActivePotionEffects().forEach(e -> player.removePotionEffect(e.getType()));
         teleportToLobby(player);
+        plugin.getItemManager().giveSpawnItems(player);
     }
 
     public void handleDeath(Player player) {

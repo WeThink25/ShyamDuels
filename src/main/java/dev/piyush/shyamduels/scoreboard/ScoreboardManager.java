@@ -240,8 +240,25 @@ public class ScoreboardManager {
                 line = line.replace("{opponent_name}", opponent.getName());
                 line = line.replace("{opponent_ping}", String.valueOf(opponent.getPing()));
             } else {
-                line = line.replace("{opponent_name}", "???");
-                line = line.replace("{opponent_ping}", "0");
+                // Check if it's a team duel with multiple opponents
+                List<UUID> opponents = duel.getTeam1().contains(player.getUniqueId()) ? duel.getTeam2()
+                        : duel.getTeam1();
+                if (opponents.size() > 1) {
+                    line = line.replace("{opponent_name}", opponents.size() + " Players");
+                    line = line.replace("{opponent_ping}", "-");
+                } else if (!opponents.isEmpty()) {
+                    Player op = Bukkit.getPlayer(opponents.get(0));
+                    if (op != null) {
+                        line = line.replace("{opponent_name}", op.getName());
+                        line = line.replace("{opponent_ping}", String.valueOf(op.getPing()));
+                    } else {
+                        line = line.replace("{opponent_name}", "Offline");
+                        line = line.replace("{opponent_ping}", "0");
+                    }
+                } else {
+                    line = line.replace("{opponent_name}", "???");
+                    line = line.replace("{opponent_ping}", "0");
+                }
             }
 
             line = line.replace("{round}", String.valueOf(duel.getCurrentRound()));

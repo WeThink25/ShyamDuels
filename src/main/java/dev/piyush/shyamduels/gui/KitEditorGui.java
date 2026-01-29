@@ -24,6 +24,9 @@ public class KitEditorGui extends FastInv {
     private final Player player;
     private final Kit kit;
     private final PlayerKit playerKit;
+    private final ItemStack[] backupInventory;
+    private final ItemStack[] backupArmor;
+    private final ItemStack backupOffhand;
     private boolean skipCloseTitle = false;
 
     private int slotInfo;
@@ -40,6 +43,9 @@ public class KitEditorGui extends FastInv {
         this.player = player;
         this.kit = kit;
         this.playerKit = plugin.getKitManager().getPlayerKit(player.getUniqueId(), kit.getName());
+        this.backupInventory = player.getInventory().getContents();
+        this.backupArmor = player.getInventory().getArmorContents();
+        this.backupOffhand = player.getInventory().getItemInOffHand();
 
         loadSlots();
         initializeItems();
@@ -150,6 +156,7 @@ public class KitEditorGui extends FastInv {
             return;
         }
         if (slot == slotExit) {
+            restoreInventory();
             player.closeInventory();
             return;
         }
@@ -182,6 +189,7 @@ public class KitEditorGui extends FastInv {
         }
     }
 
+    @SuppressWarnings("all")
     public void handleDrag(InventoryDragEvent event) {
         Set<Integer> slots = event.getRawSlots();
         for (int rawSlot : slots) {
@@ -235,6 +243,16 @@ public class KitEditorGui extends FastInv {
 
         plugin.getKitManager().savePlayerKit(newPk);
         MessageUtils.sendMessage(player, "gui.kit-editor.messages.saved");
+        plugin.getKitManager().savePlayerKit(newPk);
+        MessageUtils.sendMessage(player, "gui.kit-editor.messages.saved");
+        restoreInventory();
         player.closeInventory();
+    }
+
+    private void restoreInventory() {
+        player.getInventory().setContents(backupInventory);
+        player.getInventory().setArmorContents(backupArmor);
+        player.getInventory().setItemInOffHand(backupOffhand);
+        player.updateInventory();
     }
 }

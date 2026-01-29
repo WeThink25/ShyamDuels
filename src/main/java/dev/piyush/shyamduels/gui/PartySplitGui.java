@@ -1,10 +1,8 @@
 package dev.piyush.shyamduels.gui;
 
 import dev.piyush.shyamduels.ShyamDuels;
-import dev.piyush.shyamduels.kit.Kit;
 import dev.piyush.shyamduels.party.Party;
 import dev.piyush.shyamduels.party.PartySplitManager;
-import dev.piyush.shyamduels.queue.QueueMode;
 import dev.piyush.shyamduels.util.MessageUtils;
 import fr.mrmicky.fastinv.FastInv;
 import fr.mrmicky.fastinv.ItemBuilder;
