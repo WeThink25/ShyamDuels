@@ -6,6 +6,11 @@ authors: [Piyush]
 description: A modern, high-performance duel plugin.
 depend: [FastAsyncWorldEdit]
 softdepend: [PlaceholderAPI]
+libraries:
+  - com.github.ben-manes.caffeine:caffeine:3.1.8
+  - org.xerial:sqlite-jdbc:3.45.3.0
+  - com.mysql:mysql-connector-j:8.3.0
+  - com.mchange:c3p0:0.9.5.5
 
 permissions:
   shyamduels.admin:
