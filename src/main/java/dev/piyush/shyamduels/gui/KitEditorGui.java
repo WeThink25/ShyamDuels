@@ -94,7 +94,7 @@ public class KitEditorGui extends FastInv {
             setItem(slotArmor[3], armorContent[3]);
         }
 
-        if (offhandContent != null) {
+        if (offhandContent != null && offhandContent.getType() != Material.AIR) {
             setItem(slotOffhand, offhandContent);
         } else {
             setItem(slotOffhand, loader.buildItemFromSection(GUI_KEY, "offhand", Material.SHIELD, Map.of()));
@@ -185,6 +185,7 @@ public class KitEditorGui extends FastInv {
                     MessageUtils.sendMessage(player, "gui.kit-editor.messages.hold-armor");
                 }
             } else {
+                MessageUtils.sendMessage(player, "gui.kit-editor.messages.no-permission");
             }
         }
     }

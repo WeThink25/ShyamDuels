@@ -39,6 +39,26 @@ public class FFAListener implements Listener {
     public void onDeath(PlayerDeathEvent e) {
         Player player = e.getEntity();
         if (ffaManager.getPlayerState(player) == FFAManager.FFAState.IN_FFA) {
+            boolean dropsEnabled = plugin.getConfig().getBoolean("item-drops.enabled", false);
+
+            if (dropsEnabled && player.getKiller() != null) {
+                Player killer = player.getKiller();
+                if (ffaManager.getPlayerState(killer) == FFAManager.FFAState.IN_FFA) {
+                    java.util.List<org.bukkit.inventory.ItemStack> drops = new java.util.ArrayList<>(e.getDrops());
+                    final String victimName = player.getName();
+
+                    int delay = plugin.getConfig().getInt("item-drops.looting-delay", 5);
+                    MessageUtils.sendMessage(killer,
+                            "&eLooting " + victimName + "'s items in " + delay + " seconds...");
+
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                        if (killer.isOnline()) {
+                            new dev.piyush.shyamduels.gui.LootGui(plugin, killer, victimName, drops).open(killer);
+                        }
+                    }, delay * 20L);
+                }
+            }
+
             e.getDrops().clear();
             e.setDroppedExp(0);
 

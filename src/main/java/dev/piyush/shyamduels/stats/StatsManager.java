@@ -29,13 +29,16 @@ public class StatsManager {
         this.plugin = plugin;
         this.statsDao = statsDao;
 
-        this.eloEnabled = plugin.getConfig().getBoolean("elo.enabled", true);
+        this.eloEnabled = plugin.getConfig().getBoolean("elo.enabled", true)
+                && plugin.getConfig().getBoolean("elo.rank-system", true);
         this.baseEloGain = plugin.getConfig().getInt("elo.base-gain", 25);
         this.baseEloLoss = plugin.getConfig().getInt("elo.base-loss", 20);
         this.killEloGain = plugin.getConfig().getInt("elo.kill-gain", 5);
         this.minElo = plugin.getConfig().getInt("elo.min-elo", 0);
 
-        Rank.loadRanks(plugin);
+        if (this.eloEnabled) {
+            Rank.loadRanks(plugin);
+        }
     }
 
     public PlayerStats getStats(UUID uuid) {

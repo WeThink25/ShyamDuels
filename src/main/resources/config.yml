@@ -80,7 +80,12 @@ item-names:
 # ============================================
 # ELO & Ranking System Configuration
 # ============================================
+item-drops:
+  enabled: false
+  looting-delay: 5
+
 elo:
+  rank-system: true
   enabled: true
   base-gain: 25       # Base ELO gain on match win
   base-loss: 20       # Base ELO loss on match loss (multiplied by rank multiplier)
