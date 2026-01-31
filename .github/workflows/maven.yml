@@ -1,7 +1,7 @@
-name: Java CI with Maven (Build JAR)
+name: Java CI with Maven (Dev Build Release)
 
 permissions:
-  contents: read
+  contents: write
 
 on:
   push:
@@ -25,8 +25,36 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean package
 
-      - name: Upload JAR artifact
-        uses: actions/upload-artifact@v4
+      - name: Generate Dev Tag
+        run: |
+          echo "TAG=dev-build-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: jar-file
-          path: target/*.jar
+          tag_name: ${{ env.TAG }}
+          name: Dev Build ${{ env.TAG }}
+          prerelease: true
+          body: |
+            🚧 **Development Build**
+
+            This is an automated dev build generated from the latest commit.
+
+            🔹 Branch: `${{ github.ref_name }}`
+            🔹 Commit: `${{ github.sha }}`
+            🔹 Build Number: `${{ github.run_number }}`
+
+            🐛 Found a bug? Report it here:
+            https://github.com/ShyamStudios/ShyamDuels/issues
+
+            ⚠️ This build may contain bugs. Use for testing only.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload JAR to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          files: target/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
