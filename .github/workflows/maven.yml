@@ -33,7 +33,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
-          name: Dev Build ${{ env.TAG }}
+          name: Dev Build — ${{ github.event.head_commit.message }}
           prerelease: true
           body: |
             🚧 **Development Build**
@@ -55,6 +55,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
-          files: target/*.jar
+          files: |
+            target/shyamduels-*.jar
+            !target/original-*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
