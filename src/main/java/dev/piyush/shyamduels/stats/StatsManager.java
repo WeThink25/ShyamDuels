@@ -23,20 +23,17 @@ public class StatsManager {
     private final int baseEloLoss;
     private final int killEloGain;
     private final int minElo;
-    private final boolean eloEnabled;
 
     public StatsManager(ShyamDuels plugin, PlayerStatsDao statsDao) {
         this.plugin = plugin;
         this.statsDao = statsDao;
 
-        this.eloEnabled = plugin.getConfig().getBoolean("elo.enabled", true)
-                && plugin.getConfig().getBoolean("elo.rank-system", true);
         this.baseEloGain = plugin.getConfig().getInt("elo.base-gain", 25);
         this.baseEloLoss = plugin.getConfig().getInt("elo.base-loss", 20);
         this.killEloGain = plugin.getConfig().getInt("elo.kill-gain", 5);
         this.minElo = plugin.getConfig().getInt("elo.min-elo", 0);
 
-        if (this.eloEnabled) {
+        if (isEloEnabled()) {
             Rank.loadRanks(plugin);
         }
     }
@@ -76,7 +73,7 @@ public class StatsManager {
     }
 
     public void recordKill(Player killer, Player victim) {
-        if (!eloEnabled) {
+        if (!isEloEnabled()) {
             PlayerStats killerStats = getStats(killer);
             killerStats.addKill();
             return;
@@ -99,7 +96,7 @@ public class StatsManager {
     }
 
     public void recordWin(Player winner) {
-        if (!eloEnabled) {
+        if (!isEloEnabled()) {
             PlayerStats stats = getStats(winner);
             stats.addWin();
             return;
@@ -116,7 +113,7 @@ public class StatsManager {
     }
 
     public void recordLoss(Player loser) {
-        if (!eloEnabled) {
+        if (!isEloEnabled()) {
             PlayerStats stats = getStats(loser);
             stats.addLoss();
             return;
@@ -204,6 +201,11 @@ public class StatsManager {
 
     public Rank getRank(Player player) {
         return Rank.getRankForElo(getStats(player).getElo());
+    }
+
+    public boolean isEloEnabled() {
+        return plugin.getConfig().getBoolean("elo.enabled", true)
+                && plugin.getConfig().getBoolean("elo.rank-system", true);
     }
 
     public PlayerStatsDao getStatsDao() {

@@ -94,11 +94,7 @@ public class KitEditorGui extends FastInv {
             setItem(slotArmor[3], armorContent[3]);
         }
 
-        if (offhandContent != null && offhandContent.getType() != Material.AIR) {
-            setItem(slotOffhand, offhandContent);
-        } else {
-            setItem(slotOffhand, loader.buildItemFromSection(GUI_KEY, "offhand", Material.SHIELD, Map.of()));
-        }
+        // Offhand logic moved to end of initialization to prevent overwrites
 
         if (invContent != null) {
             for (int i = 0; i < Math.min(invContent.length, 36); i++) {
@@ -119,6 +115,12 @@ public class KitEditorGui extends FastInv {
             if (getInventory().getItem(i) == null) {
                 setItem(i, glass);
             }
+        }
+
+        if (offhandContent != null && !offhandContent.getType().isAir()) {
+            setItem(slotOffhand, offhandContent);
+        } else {
+            setItem(slotOffhand, loader.buildItemFromSection(GUI_KEY, "offhand", Material.SHIELD, Map.of()));
         }
     }
 
