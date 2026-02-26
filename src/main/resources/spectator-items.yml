@@ -1,36 +1,39 @@
-# ============================================
-# Spectator Items Configuration
-# ============================================
-# Items given to players when spectating
-# ============================================
-
 items:
   teleporter:
     slot: 0
     material: COMPASS
-    name: "&a&lPlayer Teleporter"
-    lore:
-      - "&7"
-      - "&7Click to teleport"
-      - "&7to active players"
+    name: "&b&l⚡ Player Teleporter"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Click to teleport"
+      - "&f to active players"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
     commands: []
+    enchanted: true
 
   player-info:
     slot: 4
     material: BOOK
-    name: "&e&lMatch Info"
-    lore:
-      - "&7"
-      - "&7View match details"
+    name: "&b&l📋 Match Info"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f View match details"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
     commands: []
 
   leave-spectate:
     slot: 8
     material: RED_BED
-    name: "&c&lReturn to Lobby"
-    lore:
-      - "&7"
-      - "&7Stop spectating and"
-      - "&7return to the lobby"
-    commands:
-      - "player:spectate leave"
+    name: "&c&l✖ Return to Lobby"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Stop spectating and"
+      - "&f return to the lobby"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:spectate leave"]

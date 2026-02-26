@@ -1,19 +1,9 @@
-# ShyamDuels Configuration
-# Version 1.0
-
-
-# Enable debug messages (verbose logging)
 debug: false
 
 database:
-  # Options: SQLITE, MYSQL
   type: SQLITE
-  
-  # For SQLite
   sqlite:
-    file: "shyamduels.db" # Stored in plugin folder
-    
-  # For MySQL
+    file: shyamduels.db
   mysql:
     host: localhost
     port: 3306
@@ -21,65 +11,45 @@ database:
     username: root
     password: ""
     use-ssl: false
-    
+
 server:
-  name: "Practice Server"
+  name: Practice Server
 
 lobby:
-  world: "spawn"
+  world: spawn
   x: 0.0
   y: 100.0
   z: 0.0
   yaw: 0.0
   pitch: 0.0
 
-# ============================================
-# Party System Configuration
-# ============================================
 party:
-  # Default maximum party size for normal players
   default-max-size: 4
-  # Maximum party size for VIP players
   vip-max-size: 8
-  # Permission required for VIP party size
-  vip-permission: "shyamduels.vip"
-  # Time in seconds before a party invite expires
+  vip-permission: shyamduels.vip
   invite-expiration: 60
-  # If true, party ownership transfers to another member when owner leaves
-  # If false, party is disbanded when owner leaves
   transfer-ownership-on-leave: true
 
-# Party Chat Configuration
 party-chat:
-  format: "&d[Party] &f{player}: &e{message}"
+  format: "&b[Party] &f{player}: &7{message}"
 
-# Leave Fight / Spawn Command
 leavefight:
-  # Cooldown in seconds before player can use /leavefight again
   cooldown: 3
 
 ffa:
   reset-interval-seconds: 300
-  
+
 duels:
-  # Time in seconds before a duel request expires
   invite-expiration: 60
-  # Time in seconds for countdown before match starts
   start-countdown: 5
-  
-  # Commands to run on match end
-  # Placeholders: %winner%, %loser%
   end-commands:
     - "tell %winner% &aYou won the duel against %loser%!"
     - "tell %loser% &cYou lost the duel against %winner%!"
 
 item-names:
   kit-selector: "&bSelect a Kit"
-  arena-selector: "&eSelect an Arena"
+  arena-selector: "&bSelect an Arena"
 
-# ============================================
-# ELO & Ranking System Configuration
-# ============================================
 item-drops:
   enabled: false
   looting-delay: 5
@@ -87,217 +57,43 @@ item-drops:
 elo:
   rank-system: true
   enabled: true
-  base-gain: 25       # Base ELO gain on match win
-  base-loss: 20       # Base ELO loss on match loss (multiplied by rank multiplier)
-  kill-gain: 5        # ELO gain per kill
-  min-elo: 0          # Minimum ELO floor (can't go below this)
-  starting-elo: 1000  # Starting ELO for new players
-  
-  # Rank Configuration (configurable tiers)
-  # Higher ranks have higher loss-multiplier (lose more points when dying)
-  # Format: min-elo, max-elo, display name, colored name, loss multiplier
+  base-gain: 25
+  base-loss: 20
+  kill-gain: 5
+  min-elo: 0
+  starting-elo: 1000
   ranks:
-    bronze_v:
-      name: "Bronze V"
-      colored: "&8[Bronze V]"
-      min-elo: 0
-      max-elo: 199
-      loss-multiplier: 0.4
-    bronze_iv:
-      name: "Bronze IV"
-      colored: "&8[Bronze IV]"
-      min-elo: 200
-      max-elo: 399
-      loss-multiplier: 0.45
-    bronze_iii:
-      name: "Bronze III"
-      colored: "&7[Bronze III]"
-      min-elo: 400
-      max-elo: 599
-      loss-multiplier: 0.5
-    bronze_ii:
-      name: "Bronze II"
-      colored: "&7[Bronze II]"
-      min-elo: 600
-      max-elo: 799
-      loss-multiplier: 0.55
-    bronze_i:
-      name: "Bronze I"
-      colored: "&7[Bronze I]"
-      min-elo: 800
-      max-elo: 999
-      loss-multiplier: 0.6
-    silver_v:
-      name: "Silver V"
-      colored: "&f[Silver V]"
-      min-elo: 1000
-      max-elo: 1099
-      loss-multiplier: 0.7
-    silver_iv:
-      name: "Silver IV"
-      colored: "&f[Silver IV]"
-      min-elo: 1100
-      max-elo: 1199
-      loss-multiplier: 0.75
-    silver_iii:
-      name: "Silver III"
-      colored: "&f[Silver III]"
-      min-elo: 1200
-      max-elo: 1299
-      loss-multiplier: 0.8
-    silver_ii:
-      name: "Silver II"
-      colored: "&f[Silver II]"
-      min-elo: 1300
-      max-elo: 1399
-      loss-multiplier: 0.85
-    silver_i:
-      name: "Silver I"
-      colored: "&f[Silver I]"
-      min-elo: 1400
-      max-elo: 1499
-      loss-multiplier: 0.9
-    gold_v:
-      name: "Gold V"
-      colored: "&6[Gold V]"
-      min-elo: 1500
-      max-elo: 1599
-      loss-multiplier: 1.0
-    gold_iv:
-      name: "Gold IV"
-      colored: "&6[Gold IV]"
-      min-elo: 1600
-      max-elo: 1699
-      loss-multiplier: 1.05
-    gold_iii:
-      name: "Gold III"
-      colored: "&6[Gold III]"
-      min-elo: 1700
-      max-elo: 1799
-      loss-multiplier: 1.1
-    gold_ii:
-      name: "Gold II"
-      colored: "&6[Gold II]"
-      min-elo: 1800
-      max-elo: 1899
-      loss-multiplier: 1.15
-    gold_i:
-      name: "Gold I"
-      colored: "&6[Gold I]"
-      min-elo: 1900
-      max-elo: 1999
-      loss-multiplier: 1.2
-    platinum_v:
-      name: "Platinum V"
-      colored: "&b[Platinum V]"
-      min-elo: 2000
-      max-elo: 2099
-      loss-multiplier: 1.25
-    platinum_iv:
-      name: "Platinum IV"
-      colored: "&b[Platinum IV]"
-      min-elo: 2100
-      max-elo: 2199
-      loss-multiplier: 1.3
-    platinum_iii:
-      name: "Platinum III"
-      colored: "&b[Platinum III]"
-      min-elo: 2200
-      max-elo: 2299
-      loss-multiplier: 1.35
-    platinum_ii:
-      name: "Platinum II"
-      colored: "&b[Platinum II]"
-      min-elo: 2300
-      max-elo: 2399
-      loss-multiplier: 1.4
-    platinum_i:
-      name: "Platinum I"
-      colored: "&b[Platinum I]"
-      min-elo: 2400
-      max-elo: 2499
-      loss-multiplier: 1.45
-    diamond_v:
-      name: "Diamond V"
-      colored: "&3[Diamond V]"
-      min-elo: 2500
-      max-elo: 2599
-      loss-multiplier: 1.5
-    diamond_iv:
-      name: "Diamond IV"
-      colored: "&3[Diamond IV]"
-      min-elo: 2600
-      max-elo: 2699
-      loss-multiplier: 1.55
-    diamond_iii:
-      name: "Diamond III"
-      colored: "&3[Diamond III]"
-      min-elo: 2700
-      max-elo: 2799
-      loss-multiplier: 1.6
-    diamond_ii:
-      name: "Diamond II"
-      colored: "&3[Diamond II]"
-      min-elo: 2800
-      max-elo: 2899
-      loss-multiplier: 1.65
-    diamond_i:
-      name: "Diamond I"
-      colored: "&3[Diamond I]"
-      min-elo: 2900
-      max-elo: 2999
-      loss-multiplier: 1.7
-    crown_v:
-      name: "Crown V"
-      colored: "&d[Crown V]"
-      min-elo: 3000
-      max-elo: 3099
-      loss-multiplier: 1.75
-    crown_iv:
-      name: "Crown IV"
-      colored: "&d[Crown IV]"
-      min-elo: 3100
-      max-elo: 3199
-      loss-multiplier: 1.8
-    crown_iii:
-      name: "Crown III"
-      colored: "&d[Crown III]"
-      min-elo: 3200
-      max-elo: 3299
-      loss-multiplier: 1.85
-    crown_ii:
-      name: "Crown II"
-      colored: "&d[Crown II]"
-      min-elo: 3300
-      max-elo: 3399
-      loss-multiplier: 1.9
-    crown_i:
-      name: "Crown I"
-      colored: "&d[Crown I]"
-      min-elo: 3400
-      max-elo: 3499
-      loss-multiplier: 1.95
-    ace:
-      name: "Ace"
-      colored: "&c[Ace]"
-      min-elo: 3500
-      max-elo: 3999
-      loss-multiplier: 2.0
-    ace_master:
-      name: "Ace Master"
-      colored: "&c[Ace Master]"
-      min-elo: 4000
-      max-elo: 4499
-      loss-multiplier: 2.25
-    ace_dominator:
-      name: "Ace Dominator"
-      colored: "&4[Ace Dominator]"
-      min-elo: 4500
-      max-elo: 4999
-      loss-multiplier: 2.5
-    conqueror:
-      name: "Conqueror"
-      colored: "&4&l[Conqueror]"
-      min-elo: 5000
-      max-elo: 999999
-      loss-multiplier: 3.0
+    bronze_v: {name: Bronze V, colored: "&8[Bronze V]", min-elo: 0, max-elo: 199, loss-multiplier: 0.4}
+    bronze_iv: {name: Bronze IV, colored: "&8[Bronze IV]", min-elo: 200, max-elo: 399, loss-multiplier: 0.45}
+    bronze_iii: {name: Bronze III, colored: "&7[Bronze III]", min-elo: 400, max-elo: 599, loss-multiplier: 0.5}
+    bronze_ii: {name: Bronze II, colored: "&7[Bronze II]", min-elo: 600, max-elo: 799, loss-multiplier: 0.55}
+    bronze_i: {name: Bronze I, colored: "&7[Bronze I]", min-elo: 800, max-elo: 999, loss-multiplier: 0.6}
+    silver_v: {name: Silver V, colored: "&f[Silver V]", min-elo: 1000, max-elo: 1099, loss-multiplier: 0.7}
+    silver_iv: {name: Silver IV, colored: "&f[Silver IV]", min-elo: 1100, max-elo: 1199, loss-multiplier: 0.75}
+    silver_iii: {name: Silver III, colored: "&f[Silver III]", min-elo: 1200, max-elo: 1299, loss-multiplier: 0.8}
+    silver_ii: {name: Silver II, colored: "&f[Silver II]", min-elo: 1300, max-elo: 1399, loss-multiplier: 0.85}
+    silver_i: {name: Silver I, colored: "&f[Silver I]", min-elo: 1400, max-elo: 1499, loss-multiplier: 0.9}
+    gold_v: {name: Gold V, colored: "&6[Gold V]", min-elo: 1500, max-elo: 1599, loss-multiplier: 1.0}
+    gold_iv: {name: Gold IV, colored: "&6[Gold IV]", min-elo: 1600, max-elo: 1699, loss-multiplier: 1.05}
+    gold_iii: {name: Gold III, colored: "&6[Gold III]", min-elo: 1700, max-elo: 1799, loss-multiplier: 1.1}
+    gold_ii: {name: Gold II, colored: "&6[Gold II]", min-elo: 1800, max-elo: 1899, loss-multiplier: 1.15}
+    gold_i: {name: Gold I, colored: "&6[Gold I]", min-elo: 1900, max-elo: 1999, loss-multiplier: 1.2}
+    platinum_v: {name: Platinum V, colored: "&b[Platinum V]", min-elo: 2000, max-elo: 2099, loss-multiplier: 1.25}
+    platinum_iv: {name: Platinum IV, colored: "&b[Platinum IV]", min-elo: 2100, max-elo: 2199, loss-multiplier: 1.3}
+    platinum_iii: {name: Platinum III, colored: "&b[Platinum III]", min-elo: 2200, max-elo: 2299, loss-multiplier: 1.35}
+    platinum_ii: {name: Platinum II, colored: "&b[Platinum II]", min-elo: 2300, max-elo: 2399, loss-multiplier: 1.4}
+    platinum_i: {name: Platinum I, colored: "&b[Platinum I]", min-elo: 2400, max-elo: 2499, loss-multiplier: 1.45}
+    diamond_v: {name: Diamond V, colored: "&3[Diamond V]", min-elo: 2500, max-elo: 2599, loss-multiplier: 1.5}
+    diamond_iv: {name: Diamond IV, colored: "&3[Diamond IV]", min-elo: 2600, max-elo: 2699, loss-multiplier: 1.55}
+    diamond_iii: {name: Diamond III, colored: "&3[Diamond III]", min-elo: 2700, max-elo: 2799, loss-multiplier: 1.6}
+    diamond_ii: {name: Diamond II, colored: "&3[Diamond II]", min-elo: 2800, max-elo: 2899, loss-multiplier: 1.65}
+    diamond_i: {name: Diamond I, colored: "&3[Diamond I]", min-elo: 2900, max-elo: 2999, loss-multiplier: 1.7}
+    aqua_v: {name: Aqua V, colored: "&b[Aqua V]", min-elo: 3000, max-elo: 3099, loss-multiplier: 1.75}
+    aqua_iv: {name: Aqua IV, colored: "&b[Aqua IV]", min-elo: 3100, max-elo: 3199, loss-multiplier: 1.8}
+    aqua_iii: {name: Aqua III, colored: "&b[Aqua III]", min-elo: 3200, max-elo: 3299, loss-multiplier: 1.85}
+    aqua_ii: {name: Aqua II, colored: "&b[Aqua II]", min-elo: 3300, max-elo: 3399, loss-multiplier: 1.9}
+    aqua_i: {name: Aqua I, colored: "&b[Aqua I]", min-elo: 3400, max-elo: 3499, loss-multiplier: 1.95}
+    master: {name: Master, colored: "&3&l[Master]", min-elo: 3500, max-elo: 3999, loss-multiplier: 2.0}
+    grandmaster: {name: Grandmaster, colored: "&b&l[Grandmaster]", min-elo: 4000, max-elo: 4499, loss-multiplier: 2.25}
+    legend: {name: Legend, colored: "&3&l[Legend]", min-elo: 4500, max-elo: 4999, loss-multiplier: 2.5}
+    mythic: {name: Mythic, colored: "&b&l&n[Mythic]", min-elo: 5000, max-elo: 999999, loss-multiplier: 3.0}

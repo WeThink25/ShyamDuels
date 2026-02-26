@@ -1,273 +1,330 @@
-# ============================================
-# ShyamDuels GUI Configuration
-# ============================================
-# All GUIs are fully configurable here.
-# Use & for legacy color codes, <> for MiniMessage
-# Placeholders are replaced automatically.
-# ============================================
-
-# ============================================
-# FFA GUI - /ffa command
-# ============================================
 ffa:
-  title: "&c&lFree For All"
-  size: 27  # 9, 18, 27, 36, 45, 54
-  
-  border:
-    enabled: true
-    material: BLACK_STAINED_GLASS_PANE
-    name: " "
-  
-  # Slots where FFA arenas will be displayed
-  arena-slots: [10, 11, 12, 13, 14, 15, 16]
-  
-  arena-item:
-    material: NETHERITE_SWORD
-    name: "&c&lFFA"
-    lore:
-      - "&7────────────────"
-      - "&fPlayers Fighting: &a<players>"
-      - "&fArena Reset In: &e<time>s"
-      - "&7────────────────"
-      - "&eClick to join FFA"
-    flags:
-      - HIDE_ATTRIBUTES
-
-# ============================================
-# Queue GUI - /queue command
-# ============================================
-queue:
-  title: "&8Select Queue Mode"
+  title: "&0&l⚔ &b&lFREE FOR ALL &0&l⚔"
   size: 27
-  
-  border:
-    enabled: true
-    material: GRAY_STAINED_GLASS_PANE
-    name: " "
-  
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
+  arena-slots: [10, 11, 12, 13, 14, 15, 16]
+  arena-item:
+    material: DIAMOND_SWORD
+    name: "&b&l⚔ &f{arena}"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b&l● &fPlayers: &b<players>"
+      - "&b&l● &fReset In: &b<time>s"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b▸ &fClick to join!"
+    flags: [HIDE_ATTRIBUTES]
+    enchanted: true
+
+queue:
+  title: "&0&l⚔ &b&lSELECT MODE &0&l⚔"
+  size: 27
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
   items:
-    1v1:
+    1v1: 
       slot: 10
       material: IRON_SWORD
-      name: "&a&l1v1 Duels"
-      lore:
-        - "&7Click to play 1v1."
-      flags:
-        - HIDE_ATTRIBUTES
-    
-    2v2:
+      name: "&b&l⚔ 1v1 RANKED"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Solo competitive duels"
+        - "&f ELO-based matchmaking"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to queue!"
+      flags: [HIDE_ATTRIBUTES]
+      enchanted: true
+    2v2: 
       slot: 12
       material: GOLDEN_SWORD
-      name: "&e&l2v2 Duels"
-      lore:
-        - "&7Click to play 2v2."
-      flags:
-        - HIDE_ATTRIBUTES
-    
-    3v3:
+      name: "&e&l⚔ 2v2 TEAM"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Team battles"
+        - "&f Requires party of 2"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to queue!"
+      flags: [HIDE_ATTRIBUTES]
+      enchanted: true
+    3v3: 
       slot: 14
       material: DIAMOND_SWORD
-      name: "&c&l3v3 Duels"
-      lore:
-        - "&7Click to play 3v3."
-      flags:
-        - HIDE_ATTRIBUTES
-    
-    4v4:
+      name: "&b&l⚔ 3v3 TEAM"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Large team battles"
+        - "&f Requires party of 3"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to queue!"
+      flags: [HIDE_ATTRIBUTES]
+      enchanted: true
+    4v4: 
       slot: 16
       material: NETHERITE_SWORD
-      name: "&d&l4v4 Duels"
-      lore:
-        - "&7Click to play 4v4."
-      flags:
-        - HIDE_ATTRIBUTES
+      name: "&3&l⚔ 4v4 TEAM"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Massive team battles"
+        - "&f Requires party of 4"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to queue!"
+      flags: [HIDE_ATTRIBUTES]
+      enchanted: true
 
-# ============================================
-# Queue Kit Selection GUI
-# ============================================
 queue-kit:
-  title: "&8Select Kit &7(<mode>)"
+  title: "&0&l⚔ &b&lSELECT KIT &0&l⚔ &7(<mode>)"
   size: 45
-  
-  border:
-    enabled: true
-    material: GRAY_STAINED_GLASS_PANE
-    name: " "
-  
-  # Slots where kits will be displayed
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
   kit-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
-  
   kit-item:
-    name: "&a&l<kit>"
-    lore:
-      - "&7In Queue: &f<queued>"
-      - "&7Playing: &f<playing>"
+    name: "&b&l<kit>"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
       - ""
-      - "&eClick to join queue!"
-    flags:
-      - HIDE_ATTRIBUTES
+      - "&b&l● &fIn Queue: &b<queued>"
+      - "&b&l● &fPlaying: &b<playing>"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b▸ &fClick to join queue!"
+    flags: [HIDE_ATTRIBUTES]
+    enchanted: true
 
-# ============================================
-# Kit Selector GUI - /kiteditor
-# ============================================
 kit-selector:
-  title: "&8Select Kit to Edit"
+  title: "&0&l✎ &b&lKIT EDITOR &0&l✎"
   size: 45
-  
-  border:
-    enabled: true
-    material: BLACK_STAINED_GLASS_PANE
-    name: " "
-  
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
   kit-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
-  
   kit-item:
-    name: "&a&l<name>"
-    lore:
-      - "&7Click to edit the layout"
-      - "&7for this kit."
+    name: "&b&l<name>"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Customize your layout"
+      - "&f for this kit"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b▸ &fClick to edit!"
+    enchanted: true
 
-# ============================================
-# Kit Editor GUI
-# ============================================
 kit-editor:
-  title: "&8Kit Editor » &9<kit>"
+  title: "&0&l✎ &b<kit> &0&l✎"
   size: 54
-  
-  # Slot positions for control buttons
-  slots:
-    info: 4
-    save: 49
-    reset: 50
-    exit: 51
-    offhand: 5
-    armor: [0, 1, 2, 3]
-  
+  slots: {info: 4, save: 49, reset: 50, exit: 51, offhand: 5, armor: [0, 1, 2, 3]}
   items:
-    info:
+    info: 
       material: BOOK
-      name: "&eKit Info: <kit>"
-      lore:
-        - "&7Drag items to rearrange."
-        - "&7VIPs: &eRight-Click armor to trim!"
-    
-    save:
+      name: "&b&l⚡ KIT INFO"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Drag items to rearrange"
+        - "&f VIPs: Right-click armor"
+        - "&f to customize trims!"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      enchanted: true
+    save: 
       material: LIME_DYE
-      name: "&a&lSAVE LAYOUT"
-      lore:
-        - "&7Click to save changes."
-    
-    reset:
+      name: "&a&l✔ SAVE LAYOUT"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Save your changes"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      enchanted: true
+    reset: 
       material: ORANGE_DYE
-      name: "&e&lRESET TO DEFAULT"
-      lore:
-        - "&7Discard custom layout."
-    
-    exit:
+      name: "&e&l↻ RESET"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Discard custom layout"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    exit: 
       material: BARRIER
-      name: "&c&lEXIT"
-      lore:
-        - "&7Exit without saving."
-    
-    offhand:
+      name: "&c&l✖ EXIT"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Exit without saving"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    offhand: 
       material: SHIELD
-      name: "&7Offhand Slot"
-      lore:
-        - "&7Place item here"
+      name: "&7&lOFFHAND SLOT"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Place offhand item here"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      flags: [HIDE_ATTRIBUTES]
 
-# ============================================
-# Armor Trim GUI
-# ============================================
 armor-trim:
-  title: "&8Armor Trim Editor"
+  title: "&0&l✎ &b&lARMOR TRIM &0&l✎"
   size: 54
-  
-  slots:
-    preview: 4
-    apply: 52
-    cancel: 53
-    close: 49
-    material-start: 11
-    pattern-start: 18
-  
+  slots: {preview: 4, apply: 52, cancel: 53, close: 49, material-start: 11, pattern-start: 18}
   items:
-    apply:
+    apply: 
       material: LIME_STAINED_GLASS_PANE
-      name: "&a&lAPPLY"
-      lore:
-        - "&7Apply trim and return."
-    
-    cancel:
+      name: "&a&l✔ APPLY"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Apply trim and return"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      enchanted: true
+    cancel: 
       material: RED_STAINED_GLASS_PANE
-      name: "&c&lCANCEL"
-      lore:
-        - "&7Cancel changes."
-    
-    close:
+      name: "&c&l✖ CANCEL"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Cancel changes"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    close: 
       material: BARRIER
-      name: "&cClose"
+      name: "&c&lCLOSE"
       lore: []
 
-# ============================================
-# Duel Request GUI
-# ============================================
 duel-request:
-  kit-title: "&bDuel Request &8» &7Select Kit"
-  rounds-title: "&bDuel Request &8» &7Select Rounds"
+  kit-title: "&0&l⚔ &b&lDUEL REQUEST &0&l⚔"
+  rounds-title: "&0&l⚔ &b&lSELECT ROUNDS &0&l⚔"
   size: 27
-  
   kit-slots: [10, 11, 12, 13, 14, 15, 16]
-  
-  round-slots:
-    "1": 11
-    "3": 13
-    "5": 15
-  
+  round-slots: {"1": 11, "3": 13, "5": 15}
   round-items:
-    "1":
+    "1": 
       material: IRON_INGOT
-      name: "&aBest of 1"
-      lore:
-        - "&7First to 1 win"
-    "3":
+      name: "&a&lBEST OF 1"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f First to 1 win"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to select!"
+      enchanted: true
+    "3": 
       material: GOLD_INGOT
-      name: "&eBest of 3"
-      lore:
-        - "&7First to 2 wins"
-    "5":
+      name: "&e&lBEST OF 3"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f First to 2 wins"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to select!"
+      enchanted: true
+    "5": 
       material: DIAMOND
-      name: "&cBest of 5"
-      lore:
-        - "&7First to 3 wins"
+      name: "&b&lBEST OF 5"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f First to 3 wins"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to select!"
+      enchanted: true
 
-# ============================================
-# Spectate GUI - /spectate command
-# ============================================
 spectate:
-  title: "&e&lSpectate Matches"
+  title: "&0&l👁 &b&lSPECTATE &0&l👁"
   size: 27
-  
-  border:
-    enabled: true
-    material: BLACK_STAINED_GLASS_PANE
-    name: " "
-  
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
   match-slots: [10, 11, 12, 13, 14, 15, 16]
-  
   match-item:
     material: PLAYER_HEAD
     name: "&a<player1> &7vs &c<player2>"
-    lore:
-      - "&7────────────────"
-      - "&fKit: &e<kit>"
-      - "&fSpectators: &b<spectators>"
-      - "&7────────────────"
-      - "&eClick to spectate!"
-  
-  no-matches:
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b&l● &fKit: &b<kit>"
+      - "&b&l● &fSpectators: &b<spectators>"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&b▸ &fClick to spectate!"
+  no-matches: 
     slot: 13
     material: BARRIER
-    name: "&c&lNo Active Matches"
-    lore:
-      - "&7There are no matches"
-      - "&7to spectate right now."
+    name: "&c&l✖ NO MATCHES"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f No active matches"
+      - "&f to spectate right now"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+
+party-settings:
+  title: "&0&l⚙ &b&lPARTY SETTINGS &0&l⚙"
+  size: 27
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}
+  items:
+    public: 
+      slot: 11
+      material: LIME_DYE
+      name: "&a&l✔ PUBLIC MODE"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Anyone can join"
+        - "&f your party"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to enable!"
+      enchanted: true
+    private: 
+      slot: 13
+      material: RED_DYE
+      name: "&c&l✖ PRIVATE MODE"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Invite-only mode"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to enable!"
+    chat: 
+      slot: 15
+      material: PAPER
+      name: "&b&l💬 PARTY CHAT"
+      lore: 
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&f Toggle party chat"
+        - "&f Status: {chat_status}"
+        - ""
+        - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+        - ""
+        - "&b▸ &fClick to toggle!"
+
+loot:
+  title: "&0&l⚔ &b&lLOOT &0&l⚔"
+  size: 54
+  border: {enabled: true, material: CYAN_STAINED_GLASS_PANE, name: " "}

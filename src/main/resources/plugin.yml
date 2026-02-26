@@ -1,9 +1,10 @@
 name: ShyamDuels
-version: 1.0-SNAPSHOT
+version: ${project.version}
 main: dev.piyush.shyamduels.ShyamDuels
-api-version: 1.20
+api-version: '1.20'
 authors: [Piyush]
-description: A modern, high-performance duel plugin.
+description: High-performance dueling plugin with ELO, parties, FFA, and advanced kit system
+website: https://github.com/yourusername/shyamduels
 depend: [FastAsyncWorldEdit]
 softdepend: [PlaceholderAPI]
 libraries:
@@ -14,64 +15,70 @@ libraries:
 
 permissions:
   shyamduels.admin:
-    description: Admin permission for all plugin commands
+    description: Full admin access to all commands
     default: op
   shyamduels.vip:
-    description: VIP permission for armor trims and other perks
+    description: VIP features including armor trims and larger parties
     default: false
+  shyamduels.use:
+    description: Basic plugin usage
+    default: true
 
 commands:
   duel:
-    description: Duel another player
+    description: Challenge players to duels
     usage: /duel <player>
+    aliases: [1v1]
   
   ffa:
     description: Join Free For All mode
-    usage: /ffa
+    usage: /ffa [arena]
+    aliases: [freefora ll]
   
   queue:
-    description: Join a duel queue
-    usage: /queue
-    aliases: [play]
+    description: Join ranked matchmaking
+    usage: /queue [mode]
+    aliases: [play, ranked]
   
   kiteditor:
-    description: Open the kit editor to customize your kit layout
+    description: Customize your kit layouts
     usage: /kiteditor [kit]
-    aliases: [editkit]
+    aliases: [editkit, kitedit]
   
   leavefight:
-    description: Leave current fight or teleport to lobby
+    description: Leave current match or return to lobby
     usage: /leavefight
-    aliases: [leave, spawn]
+    aliases: [leave, spawn, lobby]
   
   arena:
-    description: Admin arena management
-    usage: /arena help
+    description: Arena management commands
+    usage: /arena <create|delete|list|...>
     permission: shyamduels.admin
-    aliases: [shyamarenas]
+    aliases: [arenas]
   
   kit:
-    description: Admin kit management
-    usage: /kit help
+    description: Kit management commands
+    usage: /kit <create|delete|list|...>
     permission: shyamduels.admin
-    aliases: [shyamkits]
+    aliases: [kits]
   
   shyamduels:
-    description: Main plugin admin command
-    usage: /shyamduels
+    description: Main plugin command
+    usage: /shyamduels [reload]
     permission: shyamduels.admin
-    aliases: [sd]
+    aliases: [sd, duels]
   
   spectate:
-    description: Spectate active arena matches
+    description: Spectate active matches
     usage: /spectate [player]
+    aliases: [spec, watch]
   
   party:
-    description: Party management commands
-    usage: /party help
-    aliases: [p]
+    description: Party management
+    usage: /party <create|invite|accept|...>
+    aliases: [p, team]
   
   partychat:
     description: Toggle party chat mode
     usage: /partychat
-    aliases: [pc]
+    aliases: [pc, pchat]

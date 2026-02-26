@@ -170,18 +170,24 @@ public class QueueManager {
     }
 
     private void attemptMatchStart(QueueKey key, ArrayDeque<UUID> queue) {
-        QueueMode mode = key.getMode();
-        int teamSize = mode.getTeamSize();
+        synchronized (queue) {
+            QueueMode mode = key.getMode();
+            int teamSize = mode.getTeamSize();
+            int required = mode.getTotalPlayers();
 
-        Kit kit = plugin.getKitManager().getKit(key.getKitName());
-        if (kit == null)
-            return;
+            if (queue.size() < required) {
+                return;
+            }
 
-        dev.piyush.shyamduels.arena.Arena arena = plugin.getArenaManager().getAvailableArena(kit.getName());
+            Kit kit = plugin.getKitManager().getKit(key.getKitName());
+            if (kit == null) {
+                return;
+            }
 
-        if (arena == null) {
-            return;
-        }
+            dev.piyush.shyamduels.arena.Arena arena = plugin.getArenaManager().getAvailableArena(kit.getName());
+            if (arena == null) {
+                return;
+            }
 
         List<Player> team1 = new ArrayList<>();
         List<Player> team2 = new ArrayList<>();
@@ -241,6 +247,7 @@ public class QueueManager {
             }
         });
 
-        plugin.getDuelManager().startDuel(team1, team2, kit, mode, 1);
+            plugin.getDuelManager().startDuel(team1, team2, kit, mode, 1);
+        }
     }
 }

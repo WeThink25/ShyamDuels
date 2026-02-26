@@ -1,96 +1,90 @@
-# ============================================
-# Party Items Configuration
-# ============================================
-# Items given to players when in a party
-# Replaces spawn items when party is created/joined
-#
-# Item Options:
-#   slot: 0-8 (hotbar slot)
-#   material: Bukkit Material name
-#   name: Item display name (supports color codes)
-#   lore: List of lore lines (supports {chat_status} placeholder)
-#   commands: List of commands (prefix with "player:" or "console:")
-#   owner-only: true/false - Only shown to party owner
-#   flags: ItemFlag list (e.g., HIDE_ATTRIBUTES)
-#   enchanted: true/false - adds glow effect
-# ============================================
-
 items:
   party-split:
     slot: 0
     material: IRON_SWORD
-    name: "&a&lParty Split"
-    lore:
-      - "&7"
-      - "&7Split your party into"
-      - "&7two teams for a duel!"
-      - "&7"
-      - "&e◆ Owner Only"
-    commands:
-      - "player:party split"
+    name: "&b&l⚔ Party Split"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Split your party into"
+      - "&f two teams for a duel!"
+      - ""
+      - "&e&l● &eOwner Only"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party split"]
     owner-only: true
-    flags:
-      - HIDE_ATTRIBUTES
+    flags: [HIDE_ATTRIBUTES]
     enchanted: true
-
 
   party-duels:
     slot: 1
     material: DIAMOND_SWORD
-    name: "&b&lParty Duels"
-    lore:
-      - "&7"
-      - "&7Challenge another party"
-      - "&7to a duel!"
-      - "&7"
-      - "&e◆ Owner Only"
-    commands:
-      - "player:party duel"
+    name: "&b&l⚔ Party Duels"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Challenge another party"
+      - "&f to a duel!"
+      - ""
+      - "&e&l● &eOwner Only"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party duel"]
     owner-only: true
-    flags:
-      - HIDE_ATTRIBUTES
+    flags: [HIDE_ATTRIBUTES]
+    enchanted: true
 
   party-info:
     slot: 3
     material: PLAYER_HEAD
-    name: "&e&lParty Info"
-    lore:
-      - "&7"
-      - "&7View party members"
-      - "&7and information"
-    commands:
-      - "player:party info"
+    name: "&b&l👥 Party Info"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f View party members"
+      - "&f and information"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party info"]
 
   party-chat:
     slot: 4
     material: PAPER
-    name: "&e&lParty Chat"
-    lore:
-      - "&7"
-      - "&7Toggle party-only chat"
-      - "&7Status: {chat_status}"
-    commands:
-      - "player:party chat"
+    name: "&b&l💬 Party Chat"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Toggle party-only chat"
+      - "&f Status: {chat_status}"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party chat"]
 
   party-settings:
     slot: 5
     material: COMPARATOR
-    name: "&d&lParty Settings"
-    lore:
-      - "&7"
-      - "&7Configure your party"
-      - "&7"
-      - "&e◆ Owner Only"
-    commands:
-      - "player:party settings"
+    name: "&b&l⚙ Party Settings"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Configure your party"
+      - ""
+      - "&e&l● &eOwner Only"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party settings"]
     owner-only: true
+    enchanted: true
 
   party-leave:
     slot: 8
     material: BARRIER
-    name: "&c&lLeave Party"
-    lore:
-      - "&7"
-      - "&7Leave your current party"
-    commands:
-      - "player:party leave"
+    name: "&c&l✖ Leave Party"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Leave your current party"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party leave"]

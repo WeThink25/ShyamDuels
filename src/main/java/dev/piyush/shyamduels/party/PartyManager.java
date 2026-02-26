@@ -144,8 +144,9 @@ public class PartyManager {
         party.addMember(player.getUniqueId());
         playerToParty.put(player.getUniqueId(), party);
 
-        MessageUtils.sendMessage(player, "party.joined",
-                Map.of("player", party.getOwnerPlayer() != null ? party.getOwnerPlayer().getName() : "Unknown"));
+        Player ownerPlayer = party.getOwnerPlayer();
+        String ownerName = ownerPlayer != null ? ownerPlayer.getName() : "Unknown";
+        MessageUtils.sendMessage(player, "party.joined", Map.of("player", ownerName));
 
         party.broadcast(
                 MessageUtils.parse(MessageUtils.get("party.player-joined"), Map.of("player", player.getName())));
@@ -242,11 +243,14 @@ public class PartyManager {
             if (newOwner != null) {
                 party.setOwner(newOwner);
                 Player newOwnerPlayer = Bukkit.getPlayer(newOwner);
+                String newOwnerName = newOwnerPlayer != null ? newOwnerPlayer.getName() : "Unknown";
+                party.broadcast(MessageUtils.parse(MessageUtils.get("party.new-owner"),
+                        Map.of("player", newOwnerName)));
+                
                 if (newOwnerPlayer != null) {
-                    party.broadcast(MessageUtils.parse(MessageUtils.get("party.new-owner"),
-                            Map.of("player", newOwnerPlayer.getName())));
                     plugin.getItemManager().givePartyItems(newOwnerPlayer, party);
                 }
+                
                 for (Player member : party.getOnlineMembers()) {
                     if (!member.getUniqueId().equals(newOwner)) {
                         plugin.getItemManager().givePartyItems(member, party);

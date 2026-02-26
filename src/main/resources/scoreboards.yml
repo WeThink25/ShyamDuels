@@ -1,117 +1,57 @@
-# ============================================
-# Scoreboard Configuration
-# ============================================
-# All scoreboards are fully configurable here.
-# Use & for legacy color codes or hex colors.
-# 
-# Placeholders vary by scoreboard type - see comments.
-# Lines must be unique (no duplicates allowed).
-# ============================================
-
-# Update interval in ticks (20 ticks = 1 second)
 update-interval: 20
 
-# ============================================
-# Lobby Scoreboard (when not in party/queue/duel)
-# ============================================
-# Placeholders:
-#   {online} - Online players
-#   {queued} - Players in queue
-#   {fighting} - Players fighting
-#   {wins} - Player's wins
-#   {losses} - Player's losses
-#   {kills} - Player's kills
-#   {deaths} - Player's deaths
-#   {kdr} - Kill/Death ratio
-#   {rank} - Player's rank
-#   {elo} - Player's ELO
-# ============================================
 lobby:
   enabled: true
-  title: "&d&lSHYAMDUELS"
+  title: "&b&lSHYAMDUELS"
   lines:
-    - "&7&m-----------------"
-    - "&fOnline: &a{online}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&fOnline: &b{online}"
     - "&fIn Queue: &e{queued}"
     - "&fIn Fight: &c{fighting}"
     - " "
-    - "&fYour Stats:"
+    - "&b&lYour Stats:"
     - "  &fWins: &a{wins}"
     - "  &fLosses: &c{losses}"
     - "  &fK/D: &b{kdr}"
     - "  "
     - "&fRank: {rank}"
-    - "&fELO: &e{elo}"
-    - "&7&m----------------"
-    - "&dpractice.server.com"
+    - "&fELO: &b{elo}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&bpractice.server.com"
 
-# ============================================
-# Party Lobby Scoreboard
-# ============================================
-# Placeholders:
-#   {owner} - Party owner name
-#   {size} - Current party size
-#   {max_size} - Maximum party size
-#   {party_mode} - PUBLIC or PRIVATE
-#   {member_list} - Formatted member list
-# ============================================
 party-lobby:
   enabled: true
-  title: "&d&lPARTY"
+  title: "&b&lPARTY"
   lines:
-    - "&7&m-----------------"
-    - "&fOwner: &d{owner}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&fOwner: &b{owner}"
     - "&fMembers: &b{size}&7/&f{max_size}"
     - "&fMode: {party_mode}"
     - " "
-    - "&fMembers:"
+    - "&b&lMembers:"
     - "{member_list}"
-    - "&7&m----------------"
-    - "&dpractice.server.com"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&bpractice.server.com"
 
-# ============================================
-# Queue Scoreboard
-# ============================================
-# Placeholders:
-#   {kit} - Kit name
-#   {mode} - Queue mode (1v1, 2v2, etc)
-#   {time} - Time in queue (formatted)
-#   {queue_size} - Players in this queue
-# ============================================
 queue:
   enabled: true
-  title: "&6&lIN QUEUE"
+  title: "&e&lIN QUEUE"
   lines:
-    - "&7&m-----------------"
-    - "&fKit: &e{kit}"
-    - "&fMode: &a{mode}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&fKit: &b{kit}"
+    - "&fMode: &b{mode}"
     - " "
     - "&fWaiting: &e{time}"
     - "&fIn Queue: &b{queue_size}"
-    - "&7&m----------------"
-    - "&dpractice.server.com"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&bpractice.server.com"
 
-# ============================================
-# Duel Scoreboard
-# ============================================
-# Placeholders:
-#   {kit} - Kit name
-#   {arena} - Arena name
-#   {your_name} - Your name
-#   {your_ping} - Your ping
-#   {opponent_name} - Opponent name  
-#   {opponent_ping} - Opponent ping
-#   {round} - Current round
-#   {max_rounds} - Maximum rounds
-#   {your_score} - Your team's score
-#   {opponent_score} - Opponent's score
-# ============================================
 duel:
   enabled: true
   title: "&c&lDUEL"
   lines:
-    - "&7&m-----------------"
-    - "&fKit: &e{kit}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&fKit: &b{kit}"
     - "&fArena: &b{arena}"
     - " "
     - "&a{your_name}"
@@ -121,24 +61,14 @@ duel:
     - "  "
     - "&c{opponent_name}"
     - "&fPing: &c{opponent_ping}ms"
-    - "&7&m----------------"
+    - "&7&m━━━━━━━━━━━━━━━━━"
 
-# ============================================
-# Spectator Scoreboard  
-# ============================================
-# Placeholders:
-#   {kit} - Kit name
-#   {arena} - Arena name
-#   {player1} - First player/team
-#   {player2} - Second player/team
-#   {spectator_count} - Number of spectators
-# ============================================
 spectator:
   enabled: true
-  title: "&e&lSPECTATING"
+  title: "&b&lSPECTATING"
   lines:
-    - "&7&m-----------------"
-    - "&fKit: &e{kit}"
+    - "&7&m━━━━━━━━━━━━━━━━━"
+    - "&fKit: &b{kit}"
     - "&fArena: &b{arena}"
     - " "
     - "&a{player1}"
@@ -146,4 +76,4 @@ spectator:
     - "&c{player2}"
     - " "
     - "&7Spectators: &b{spectator_count}"
-    - "&7&m----------------"
+    - "&7&m━━━━━━━━━━━━━━━━━"

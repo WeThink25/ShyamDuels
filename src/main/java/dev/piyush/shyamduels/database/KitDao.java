@@ -50,6 +50,10 @@ public class KitDao {
     }
 
     public void saveKit(Kit kit) {
+        if (kit == null || kit.getName() == null) {
+            return;
+        }
+
         String sql = "REPLACE INTO kits (name, inventory, armor, offhand, effects, icon, build_whitelist) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         String invB64 = SerializerUtils.itemStackArrayToBase64(kit.getInventory());
@@ -64,7 +68,8 @@ public class KitDao {
                 .map(Enum::name)
                 .collect(java.util.stream.Collectors.joining(","));
 
-        try (PreparedStatement stmt = dbManager.getKitConnection().prepareStatement(sql)) {
+        try (Connection conn = dbManager.getKitConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, kit.getName());
             stmt.setString(2, invB64);
@@ -82,11 +87,12 @@ public class KitDao {
 
     public void deleteKit(String name) {
         String sql = "DELETE FROM kits WHERE name = ?";
-        try (PreparedStatement stmt = dbManager.getKitConnection().prepareStatement(sql)) {
+        try (Connection conn = dbManager.getKitConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, name);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ShyamDuels.getInstance().getLogger().log(Level.WARNING, "Could not delete kit: " + name, e);
         }
     }
 

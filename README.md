@@ -1,152 +1,101 @@
 # 🎮 ShyamDuels
 
-> **A premium 1v1 and team dueling plugin for Minecraft servers**
+> **A high-performance 1v1 and team dueling plugin for Minecraft servers**
 
-![Version](https://img.shields.io/badge/version-1.0--BETA-orange)
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-brightgreen)
-![Status](https://img.shields.io/badge/status-beta-yellow)
-
----
-
-## ⚠️ Beta Notice
-
-> [!CAUTION]
-> **This plugin is currently in BETA stage.**
-> 
-> While core features are functional, you may encounter bugs or unexpected behavior.
-> Please report any issues on our [GitHub Issues](../../issues) page.
+![Version](https://img.shields.io/badge/version-1.0-brightgreen)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.4+-blue)
+![Status](https://img.shields.io/badge/status-stable-success)
 
 ---
 
 ## ✨ Features
 
-### 🗡️ Duel System
-- **1v1 Ranked Duels** - Compete against other players with ELO-based matchmaking
-- **Party Duels** - Team up with friends for exciting team battles
-- **Best-of-X Rounds** - Configurable round counts for competitive matches
-- **Custom Kit System** - Create and manage multiple fighting kits
+### 🗡️ Advanced Duel System
+- **Ranked 1v1 Duels** - ELO-based competitive matchmaking
+- **Team Battles** - 2v2, 3v3, and 4v4 party duels
+- **Best-of-X Rounds** - Configurable round system (Bo1, Bo3, Bo5)
+- **Custom Kits** - Unlimited kit creation with full customization
+- **Smart Matchmaking** - Automatic queue system with party support
 
 ### 🏟️ Arena Management
-- **Multi-Arena Support** - Set up unlimited arenas with custom boundaries
-- **Arena-Kit Linking** - Assign specific kits to specific arenas
-- **Build Mode** - Optional building during matches with whitelist support
-- **Mob Spawning Control** - Prevent mob spawning in arenas
+- **Unlimited Arenas** - Create as many arenas as needed
+- **Kit-Arena Linking** - Assign specific kits to arenas
+- **Auto-Reset** - Automatic arena restoration after matches
+- **Build Mode** - Optional building with material whitelist
+- **FFA Support** - Dedicated Free-For-All arena type
 
 ### ⚔️ Free For All (FFA)
-- **FFA Arenas** - Endless PvP action in dedicated arenas
-- **Kit Selection** - Players choose their kit before joining
-- **Spawn Protection** - Brief invincibility on spawn/respawn
+- **Continuous PvP** - Non-stop action in FFA arenas
+- **Auto-Reset** - Configurable arena reset intervals
+- **Kit Selection** - Choose your loadout before joining
+- **Spawn Protection** - Brief invincibility on spawn
 
-### 📊 Statistics & Ranking
-- **ELO System** - Competitive ranking with gain/loss based on performance
-- **30+ Ranks** - From Bronze V to Conqueror with unique colors
-- **Kill/Death Tracking** - Comprehensive player statistics
-
+### 📊 Statistics & Ranking System
+- **ELO System** - Dynamic rating with performance-based gains/losses
+- **30+ Ranks** - Bronze V → Conqueror with unique colors
+- **Comprehensive Stats** - Wins, losses, kills, deaths, K/D ratio
+- **Rank Multipliers** - Higher ranks have increased risk/reward
+- **PlaceholderAPI Support** - Display stats anywhere
 
 ### 🎨 Kit Editor
-- **Drag & Drop Interface** - Easy inventory arrangement
-- **Armor Trim Support** - VIP players can customize armor trims
-- **Per-Player Layouts** - Each player can personalize kit layouts
+- **Drag & Drop** - Intuitive inventory customization
+- **Armor Trims** - VIP players can customize armor appearance
+- **Personal Layouts** - Each player saves their own kit arrangement
+- **Real-time Preview** - See changes instantly
 
 ### 👥 Party System
-- **Party Creation** - Create and manage player parties
-- **Party Queue** - Queue for matches as a team
-- **Party vs Party** - Challenge other parties to duels
+- **Party Creation** - Team up with friends
+- **Party Queue** - Queue together for team matches
+- **Party vs Party** - Challenge other parties
+- **Party Chat** - Private communication channel
+- **Public/Private Modes** - Control who can join
+- **Auto-Transfer** - Ownership transfer on leader disconnect
 
 ### 🎬 Spectator Mode
-- **Match Spectating** - Watch ongoing duels in spectator mode
-- **Boundary Enforcement** - Spectators stay within arena bounds
+- **Live Spectating** - Watch ongoing matches
+- **Boundary Enforcement** - Spectators stay within arena
+- **Match Info** - View player stats and match details
+- **Easy Navigation** - Teleport between players
+
+### 🎯 Performance Optimized
+- **Async Operations** - Database operations don't block main thread
+- **Connection Pooling** - Efficient database management
+- **Cached Data** - Reduced database queries
+- **Optimized YAML** - Compact configuration format
+- **Thread-Safe** - Proper concurrency handling
 
 ---
 
-## 📋 All Commands
+## 📋 Commands
 
-### Duel Commands
+### Player Commands
+| Command | Aliases | Description |
+|---------|---------|-------------|
+| `/duel <player>` | | Challenge a player to a duel |
+| `/queue` | `/play` | Join ranked matchmaking |
+| `/ffa` | | Join Free For All |
+| `/kiteditor [kit]` | `/editkit` | Customize your kit layout |
+| `/leavefight` | `/leave`, `/spawn` | Return to lobby |
+| `/spectate [player]` | | Watch ongoing matches |
+| `/party` | `/p` | Party management |
+| `/partychat` | `/pc` | Toggle party chat |
+
+### Admin Commands
 | Command | Description |
 |---------|-------------|
-| `/duel <player>` | Open kit selection GUI to duel a player |
-| `/duel accept <player>` | Accept a duel request from a player |
-| `/duel deny <player>` | Deny a duel request |
-| `/duel spectate <player>` | Spectate a player's match |
-
-### Queue Commands
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/queue` | `/play` | Open the queue GUI to join matchmaking |
-
-### FFA Commands
-| Command | Description |
-|---------|-------------|
-| `/ffa` | Open the FFA GUI to select an arena |
-| `/ffa join <arena>` | Join a specific FFA arena |
-| `/ffa leave` | Leave the current FFA match |
-
-### Arena Commands (Admin)
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/arena create <name>` | | Create a new arena |
-| `/arena delete <name>` | | Delete an arena |
-| `/arena list` | | List all arenas |
-| `/arena corner1 <arena>` | `/arena pos1` | Set first corner at your location |
-| `/arena corner2 <arena>` | `/arena pos2` | Set second corner at your location |
-| `/arena spawn1 <arena>` | `/arena setspawn1`, `/arena p1` | Set spawn point 1 |
-| `/arena spawn2 <arena>` | `/arena setspawn2`, `/arena p2` | Set spawn point 2 |
-| `/arena center <arena>` | `/arena setcenter` | Set the arena center point |
-| `/arena addkit <arena> <kit>` | | Link a kit to the arena |
-| `/arena build <arena> <true/false>` | | Enable/disable build mode |
-| `/arena ffa <arena> <true/false>` | | Set arena as FFA type |
-| `/arena tp <arena>` | `/arena teleport` | Teleport to arena center |
-
-### Kit Commands (Admin)
-| Command | Description |
-|---------|-------------|
-| `/kit create <name>` | Create a kit from your current inventory |
-| `/kit delete <name>` | Delete a kit |
-| `/kit list` | List all kits |
-| `/kit load <name>` | Equip a kit to yourself |
-| `/kit setinv <name>` | Update kit with your current inventory |
-| `/kit seticon <name>` | Set kit icon to held item |
-| `/kit setitem <name>` | Set kit display item to held item |
-| `/kit allowblock <name>` | Add held block to build whitelist |
-| `/kit removeblock <name>` | Remove held block from build whitelist |
-
-### Kit Editor Command
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/kiteditor [kit]` | `/editkit` | Open the Kit Editor GUI |
-
-### Party Commands
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/party` | `/p` | Show party help |
-| `/party create` | | Create a new party |
-| `/party invite <player>` | | Invite a player to your party |
-| `/party accept` | | Accept a pending invite |
-| `/party deny` | | Deny a pending invite |
-| `/party leave` | | Leave your current party |
-| `/party disband` | | Disband your party (owner only) |
-| `/party kick <player>` | | Kick a player from party |
-| `/party public` | | Make party joinable by anyone |
-| `/party private` | | Make party invite-only |
-| `/party join <player>` | | Join a public party |
-| `/party chat` | | Toggle party chat mode |
-| `/party settings` | | Open party settings GUI |
-| `/party info` | | View party information |
-| `/party duel` | | Open party duel GUI |
-| `/party duel accept` | | Accept a party duel invite |
-
-### Party Chat Command
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/partychat` | `/pc` | Toggle party chat mode |
-
-### Utility Commands
-| Command | Aliases | Description |
-|---------|---------|-------------|
-| `/leavefight` | `/leave`, `/spawn` | Leave current fight or teleport to lobby |
-| `/spectate [player]` | | Spectate active matches |
-| `/shyamduels` | `/sd` | Main plugin admin command |
-| `/shyamduels reload` | | Reload plugin configuration |
+| `/arena create <name>` | Create new arena |
+| `/arena delete <name>` | Delete arena |
+| `/arena corner1/2 <arena>` | Set arena boundaries |
+| `/arena spawn1/2 <arena>` | Set spawn points |
+| `/arena addkit <arena> <kit>` | Link kit to arena |
+| `/arena build <arena> <true/false>` | Toggle build mode |
+| `/arena ffa <arena> <true/false>` | Set FFA mode |
+| `/kit create <name>` | Create kit from inventory |
+| `/kit delete <name>` | Delete kit |
+| `/kit setinv <name>` | Update kit inventory |
+| `/kit seticon <name>` | Set kit icon |
+| `/kit allowblock <name>` | Add block to whitelist |
+| `/shyamduels reload` | Reload configuration |
 
 ---
 
@@ -154,229 +103,285 @@
 
 | Permission | Description |
 |------------|-------------|
-| `shyamduels.admin` | Access to all admin commands |
-| `shyamduels.vip` | VIP features (armor trims, etc.) |
+| `shyamduels.admin` | Full admin access |
+| `shyamduels.vip` | VIP features (armor trims, larger parties) |
 
 ---
 
 ## 📦 Installation
 
-1. Download the latest JAR from [Releases](../../releases)
-2. Place the JAR in your server's `plugins/` folder
-3. Restart your server
-4. Configure the plugin in `plugins/ShyamDuels/config.yml`
-5. Set up arenas and kits using the in-game commands (see guides below)
-
-**Dependencies:**
-- FastAsyncWorldEdit (Required)
-- PlaceholderAPI (Optional)
+1. **Download** the latest release
+2. **Install Dependencies:**
+   - FastAsyncWorldEdit (Required)
+   - PlaceholderAPI (Optional)
+3. **Place** JAR in `plugins/` folder
+4. **Restart** server
+5. **Configure** in `plugins/ShyamDuels/`
+6. **Setup** arenas and kits (see guides below)
 
 ---
 
-## 🏟️ Arena Setup Guide
+## 🚀 Quick Start Guide
 
-Follow these steps to create a fully functional arena:
-
-### Step 1: Create the Arena
+### 1. Create Your First Kit
 ```
+1. Equip items, armor, and effects you want
+2. /kit create NoDebuff
+3. /kit seticon NoDebuff (while holding icon item)
+```
+
+### 2. Create Your First Arena
+```
+1. /arena create Arena1
+2. Stand at corner 1: /arena corner1 Arena1
+3. Stand at corner 2: /arena corner2 Arena1
+4. Set spawn 1: /arena spawn1 Arena1
+5. Set spawn 2: /arena spawn2 Arena1
+6. Link kit: /arena addkit Arena1 NoDebuff
+```
+
+### 3. Test It Out
+```
+/queue - Join matchmaking
+/duel <player> - Challenge someone
+/ffa - Join FFA (if configured)
+```
+
+---
+
+## 🏟️ Arena Setup (Detailed)
+
+### Standard Duel Arena
+```bash
 /arena create MyArena
+/arena corner1 MyArena          # Stand at one corner
+/arena corner2 MyArena          # Stand at opposite corner
+/arena spawn1 MyArena           # Player 1 spawn
+/arena spawn2 MyArena           # Player 2 spawn
+/arena center MyArena           # Optional: arena center
+/arena addkit MyArena NoDebuff  # Link kit(s)
 ```
 
-### Step 2: Set Arena Boundaries
-Stand at one corner of your arena and run:
+### FFA Arena
+```bash
+/arena create FFAArena
+/arena corner1 FFAArena
+/arena corner2 FFAArena
+/arena spawn1 FFAArena
+/arena spawn2 FFAArena
+/arena ffa FFAArena true        # Enable FFA mode
+/arena addkit FFAArena NoDebuff
 ```
-/arena corner1 MyArena
-```
-Then go to the opposite diagonal corner and run:
-```
-/arena corner2 MyArena
-```
-> **Note:** This also automatically saves the arena schematic for reset functionality!
 
-### Step 3: Set Spawn Points
-Go to where Player 1 should spawn and run:
-```
-/arena spawn1 MyArena
-```
-Go to where Player 2 should spawn and run:
-```
-/arena spawn2 MyArena
-```
-> **Tip:** Make sure spawns face each other for the best experience!
-
-### Step 4: Set Center (Optional but Recommended)
-Stand at the center of your arena and run:
-```
-/arena center MyArena
-```
-This is used for spectator teleportation and boundary checks.
-
-### Step 5: Link a Kit (Required)
-Link which kits can be used in this arena:
-```
-/arena addkit MyArena NoDebuff
-```
-You can link multiple kits to one arena by running this command multiple times.
-
-### Step 6: Enable Build Mode (Optional)
-If you want players to be able to place/break blocks during fights:
-```
-/arena build MyArena true
-```
-To disable: `/arena build MyArena false`
-
-### Making an FFA Arena
-To convert a regular arena into an FFA arena:
-```
-/arena ffa MyArena true
+### Build Arena (SkyWars/Bridge)
+```bash
+/arena create BuildArena
+# ... set corners and spawns ...
+/arena build BuildArena true    # Enable building
+/arena addkit BuildArena Bridge
 ```
 
 ---
 
-## ⚔️ Kit Setup Guide
+## ⚔️ Kit Setup (Detailed)
 
-### Step 1: Prepare Your Inventory
-Equip yourself with the items you want in the kit:
-- Put items in your hotbar and inventory slots
-- Wear the armor you want players to have
-- Apply any potion effects you want players to receive
-- Hold items in your offhand if needed
-
-### Step 2: Create the Kit
-Run the following command to create a kit from your current inventory:
-```
-/kit create NoDebuff
-```
-This automatically saves your:
-- All inventory items
-- Armor pieces
-- Active potion effects
-- Default icon (Diamond Sword)
-
-### Step 3: Customize the Icon (Optional)
-Hold the item you want as the kit's icon and run:
-```
-/kit seticon NoDebuff
+### Basic Kit
+```bash
+1. Equip your inventory with items
+2. Wear armor
+3. Apply potion effects (optional)
+4. /kit create KitName
 ```
 
-### Step 4: Allow Building Blocks (Optional)
-If your kit includes blocks (like for SkyWars or Bridge):
-1. Hold the block in your hand
-2. Run: `/kit allowblock NoDebuff`
-3. Repeat for each block type you want to allow
-
-### Updating a Kit
-To update an existing kit with your current inventory:
-```
-/kit setinv NoDebuff
+### Kit with Building
+```bash
+/kit create Bridge
+# Hold each block type and run:
+/kit allowblock Bridge  # Repeat for each block
 ```
 
-### Kit Editor (For Players)
-Players can customize their personal kit layout using:
+### Update Existing Kit
+```bash
+/kit setinv KitName     # Update inventory
+/kit seticon KitName    # Update icon (hold item)
 ```
-/kiteditor NoDebuff
-```
-This opens a GUI where they can:
-- Rearrange items with drag & drop
-- Customize armor placement
-- **VIP Feature:** Right-click armor to open Armor Trim Editor
-- Save or reset their personal layout
-
----
-
-## 🆚 FFA Setup Guide
-
-### Step 1: Create and Configure an Arena
-Follow the Arena Setup Guide above, then:
-```
-/arena ffa MyFFAArena true
-```
-
-### Step 2: Add Kits to the FFA Arena
-```
-/arena addkit MyFFAArena NoDebuff
-```
-
-### Step 3: Players Can Now Join!
-- Using command: `/ffa join MyFFAArena`
-- Using GUI: `/ffa` → Select arena
 
 ---
 
 ## 👥 Party System Guide
 
-### For Party Owner
+### Creating & Managing
+```bash
+/party create                    # Create party
+/party invite <player>           # Invite players
+/party public                    # Allow anyone to join
+/party private                   # Invite-only
+/party kick <player>             # Remove member
+/party disband                   # Disband party
+```
 
-1. **Create a Party:**
-   ```
-   /party create
-   ```
-
-2. **Invite Players:**
-   ```
-   /party invite PlayerName
-   ```
-
-3. **Manage Your Party:**
-   - `/party kick PlayerName` - Remove a member
-   - `/party public` - Allow anyone to join
-   - `/party private` - Invite-only mode
-   - `/party settings` - Open settings GUI
-   - `/party disband` - Disband the party
-
-4. **Start Party Duels:**
-   ```
-   /party duel
-   ```
-   This opens a GUI to challenge other parties.
-
-### For Party Members
-
-- `/party accept` - Accept a pending invite
-- `/party deny` - Deny an invite
-- `/party leave` - Leave the party
-- `/party chat` - Toggle party chat
-- `/party info` - View party details
+### Party Features
+- **Party Queue**: Queue as a team for ranked matches
+- **Party Duels**: Challenge other parties
+- **Party Chat**: Private communication
+- **Auto-Transfer**: Leadership transfers if owner leaves
 
 ---
 
-## ⚙️ Configuration Files
+## ⚙️ Configuration
 
-| File | Description |
-|------|-------------|
-| `config.yml` | Main settings (ELO, spawn location, etc.) |
-| `messages.yml` | All plugin messages (customizable) |
-| `gui.yml` | GUI layouts and items |
-| `scoreboards.yml` | Scoreboard configuration |
+### Main Config (`config.yml`)
+- Database settings (SQLite/MySQL)
+- Lobby spawn location
+- Party settings
+- ELO system configuration
+- Rank definitions
+
+### Messages (`messages.yml`)
+- All plugin messages
+- Gradient color support
+- MiniMessage format
+- Fully customizable
+
+### GUI (`gui.yml`)
+- All GUI layouts
+- Item configurations
+- Compact YAML format
+
+### Scoreboards (`scoreboards.yml`)
+- Lobby, queue, duel, spectator boards
+- Placeholder support
+- Customizable lines
 
 ---
 
-## 🐛 Bug Reports
+## 🎨 PlaceholderAPI Placeholders
 
-Found a bug? Please report it on our [GitHub Issues](../../issues) page with:
-- Detailed description of the issue
-- Steps to reproduce
-- Server version and plugin version
-- Any relevant error logs
+```
+%shyamduels_wins%
+%shyamduels_losses%
+%shyamduels_kills%
+%shyamduels_deaths%
+%shyamduels_kdr%
+%shyamduels_elo%
+%shyamduels_rank%
+%shyamduels_rank_colored%
+```
+
+---
+
+## 🔧 Database Support
+
+### SQLite (Default)
+- No setup required
+- Automatic file creation
+- Perfect for small servers
+
+### MySQL (Recommended for large servers)
+```yaml
+database:
+  type: MYSQL
+  mysql:
+    host: localhost
+    port: 3306
+    database: shyamduels
+    username: root
+    password: your_password
+```
+
+---
+
+## 📊 ELO System
+
+### How It Works
+- **Base Gain**: +25 ELO on win
+- **Base Loss**: -20 ELO on loss (multiplied by rank)
+- **Kill Bonus**: +5 ELO per kill
+- **Rank Multipliers**: Higher ranks lose more on defeat
+- **Minimum ELO**: 0 (configurable)
+
+### Rank Progression
+```
+Bronze V (0-199) → Bronze IV → ... → Bronze I
+Silver V (1000-1099) → ... → Silver I
+Gold V (1500-1599) → ... → Gold I
+Platinum V (2000-2099) → ... → Platinum I
+Diamond V (2500-2599) → ... → Diamond I
+Crown V (3000-3099) → ... → Crown I
+Ace (3500-3999)
+Ace Master (4000-4499)
+Ace Dominator (4500-4999)
+Conqueror (5000+)
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Arena Not Resetting
+- Ensure FastAsyncWorldEdit is installed
+- Check console for errors
+- Verify arena boundaries are set correctly
+
+### Players Can't Join Queue
+- Verify kit is linked to arena: `/arena addkit <arena> <kit>`
+- Check if arena has both spawn points set
+- Ensure arena is not in use
+
+### Database Errors
+- Check database credentials in config.yml
+- Verify MySQL server is running (if using MySQL)
+- Check file permissions for SQLite
+
+### Kit Not Working
+- Verify kit exists: `/kit list`
+- Check if kit is linked to arena
+- Ensure inventory was saved correctly
+
+---
+
+## 🔄 Migration from Other Plugins
+
+### From Practice/Duels Plugins
+1. Export your old arenas (if possible)
+2. Recreate arenas using `/arena` commands
+3. Recreate kits using `/kit` commands
+4. Configure ELO system to match old settings
+
+---
+
+## � Performance Tips
+
+1. **Use MySQL** for servers with 50+ players
+2. **Limit FFA arenas** to 2-3 active arenas
+3. **Optimize arena size** - smaller arenas = better performance
+4. **Regular restarts** - restart server daily for best performance
+5. **Monitor TPS** - use `/tps` to check server health
+
+
+## 🤝 Support
+
+- **Issues**: [GitHub Issues](https://github.com/ShyamStudios/ShyamDuels/issues)
+- **Documentation**: This README
+- **Updates**: Check [Releases](https://github.com/ShyamStudios/ShyamDuels/releases)
 
 ---
 
 ## 📜 License
 
-**⚠️ All Rights Reserved - See [LICENSE.md](LICENSE.md) for full terms**
+**All Rights Reserved** - See [https://github.com/ShyamStudios/ShyamDuels/blob/main/LICENSE.md](https://github.com/ShyamStudios/ShyamDuels/blob/main/LICENSE.md)
 
-### Summary:
-- ❌ **NO Redistribution** - You cannot share this plugin
-- ❌ **NO Reselling** - You cannot sell or resell this plugin
-- ❌ **NO Modification & Redistribution** - You cannot modify and share
-- ✅ **Personal Use** - Use on your own servers is permitted
-
-**Violators will face legal action.**
+- ✅ Personal use on your servers
+- ❌ No redistribution
+- ❌ No reselling
+- ❌ No modification & sharing
 
 ---
 
 <div align="center">
 
-**Made with ❤️ for the Minecraft PvP community**
+**Made with ❤️ for competitive Minecraft PvP**
+
+[Report Bug](https://github.com/ShyamStudios/ShyamDuels/issues) · [Request Feature](https://github.com/ShyamStudios/ShyamDuels/issues)
 
 </div>

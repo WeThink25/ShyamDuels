@@ -13,7 +13,6 @@ public class Duel {
     private final java.util.List<UUID> team2;
     private final java.util.List<UUID> aliveTeam1;
     private final java.util.List<UUID> aliveTeam2;
-    // private final dev.piyush.shyamduels.queue.QueueMode mode; // Unused
 
     private Arena arena;
     private Kit kit;
@@ -22,8 +21,6 @@ public class Duel {
 
     private int maxRounds = 1;
     private int currentRound = 1;
-    // private final java.util.Map<UUID, Integer> playerWins = new
-    // java.util.HashMap<>(); // Unused
     private int team1Wins = 0;
     private int team2Wins = 0;
 
@@ -34,7 +31,6 @@ public class Duel {
         this.team2 = new java.util.ArrayList<>(team2);
         this.aliveTeam1 = new java.util.ArrayList<>(team1);
         this.aliveTeam2 = new java.util.ArrayList<>(team2);
-        // this.mode = mode;
         this.state = DuelState.STARTING;
         this.startTime = System.currentTimeMillis();
         this.maxRounds = maxRounds;
@@ -89,10 +85,16 @@ public class Duel {
     }
 
     public Player getPlayer1() {
+        if (team1.isEmpty()) {
+            return null;
+        }
         return org.bukkit.Bukkit.getPlayer(team1.get(0));
     }
 
     public Player getPlayer2() {
+        if (team2.isEmpty()) {
+            return null;
+        }
         return org.bukkit.Bukkit.getPlayer(team2.get(0));
     }
 

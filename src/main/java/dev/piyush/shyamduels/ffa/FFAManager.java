@@ -103,7 +103,7 @@ public class FFAManager {
         }
         Location spawn = null;
         if (arena.getSpawn1() != null && arena.getSpawn2() != null) {
-            spawn = Math.random() < 0.5 ? arena.getSpawn1() : arena.getSpawn2();
+            spawn = new java.util.Random().nextBoolean() ? arena.getSpawn1() : arena.getSpawn2();
         } else if (arena.getSpawn1() != null) {
             spawn = arena.getSpawn1();
         } else if (arena.getSpawn2() != null) {
@@ -145,6 +145,10 @@ public class FFAManager {
     }
 
     private void applyFFAKit(Player player, Kit kit) {
+        if (player == null || !player.isOnline() || kit == null) {
+            return;
+        }
+
         PlayerKit edited = plugin.getKitManager().getPlayerKit(player.getUniqueId(), kit.getName());
         if (edited != null) {
             edited.apply(player);
@@ -177,9 +181,18 @@ public class FFAManager {
     }
 
     public void teleportToLobby(Player player) {
-        String worldName = plugin.getConfig().getString("lobby.world");
-        if (worldName == null)
+        if (player == null || !player.isOnline()) {
             return;
+        }
+
+        String worldName = plugin.getConfig().getString("lobby.world");
+        if (worldName == null || worldName.isEmpty()) {
+            org.bukkit.World fallbackWorld = Bukkit.getWorlds().isEmpty() ? null : Bukkit.getWorlds().get(0);
+            if (fallbackWorld != null) {
+                player.teleport(fallbackWorld.getSpawnLocation());
+            }
+            return;
+        }
 
         double x = plugin.getConfig().getDouble("lobby.x");
         double y = plugin.getConfig().getDouble("lobby.y");
@@ -190,6 +203,11 @@ public class FFAManager {
         org.bukkit.World w = Bukkit.getWorld(worldName);
         if (w != null) {
             player.teleport(new Location(w, x, y, z, yaw, pitch));
+        } else {
+            org.bukkit.World fallbackWorld = Bukkit.getWorlds().isEmpty() ? null : Bukkit.getWorlds().get(0);
+            if (fallbackWorld != null) {
+                player.teleport(fallbackWorld.getSpawnLocation());
+            }
         }
     }
 
@@ -214,10 +232,15 @@ public class FFAManager {
     }
 
     public Kit getPlayerKit(Player player) {
-        Arena arena = getPlayerArena(player);
-        if (arena == null || arena.getAllowedKits().isEmpty())
+        if (player == null) {
             return null;
-        return plugin.getKitManager().getKit(arena.getAllowedKits().iterator().next());
+        }
+        Arena arena = getPlayerArena(player);
+        if (arena == null || arena.getAllowedKits().isEmpty()) {
+            return null;
+        }
+        String kitName = arena.getAllowedKits().iterator().next();
+        return kitName != null ? plugin.getKitManager().getKit(kitName) : null;
     }
 
     public enum FFAState {

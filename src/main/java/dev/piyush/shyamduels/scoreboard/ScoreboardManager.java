@@ -240,7 +240,6 @@ public class ScoreboardManager {
                 line = line.replace("{opponent_name}", opponent.getName());
                 line = line.replace("{opponent_ping}", String.valueOf(opponent.getPing()));
             } else {
-                // Check if it's a team duel with multiple opponents
                 List<UUID> opponents = duel.getTeam1().contains(player.getUniqueId()) ? duel.getTeam2()
                         : duel.getTeam1();
                 if (opponents.size() > 1) {

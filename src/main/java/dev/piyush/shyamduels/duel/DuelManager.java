@@ -89,6 +89,10 @@ public class DuelManager {
     }
 
     public void resetRound(Duel duel) {
+        if (duel == null) {
+            return;
+        }
+
         duel.getTeam1().forEach(endingDuels::remove);
         duel.getTeam2().forEach(endingDuels::remove);
         if (duel.getArena() != null) {
@@ -98,19 +102,25 @@ public class DuelManager {
         duel.setState(Duel.DuelState.STARTING);
         duel.getTeam1().forEach(uuid -> {
             Player p = Bukkit.getPlayer(uuid);
-            if (p != null) {
-                if (duel.getArena().getSpawn1() != null)
+            if (p != null && p.isOnline()) {
+                if (duel.getArena() != null && duel.getArena().getSpawn1() != null) {
                     p.teleport(duel.getArena().getSpawn1());
-                applyKit(p, duel.getKit());
+                }
+                if (duel.getKit() != null) {
+                    applyKit(p, duel.getKit());
+                }
             }
         });
 
         duel.getTeam2().forEach(uuid -> {
             Player p = Bukkit.getPlayer(uuid);
-            if (p != null) {
-                if (duel.getArena().getSpawn2() != null)
+            if (p != null && p.isOnline()) {
+                if (duel.getArena() != null && duel.getArena().getSpawn2() != null) {
                     p.teleport(duel.getArena().getSpawn2());
-                applyKit(p, duel.getKit());
+                }
+                if (duel.getKit() != null) {
+                    applyKit(p, duel.getKit());
+                }
             }
         });
 
@@ -122,6 +132,10 @@ public class DuelManager {
     }
 
     public void finishDuel(Duel duel) {
+        if (duel == null || duel.getState() == Duel.DuelState.ENDED) {
+            return;
+        }
+
         int wTeam = duel.hasWonMatch(1) ? 1 : (duel.hasWonMatch(2) ? 2 : 0);
         dev.piyush.shyamduels.stats.StatsManager statsManager = plugin.getStatsManager();
         List<UUID> winners = wTeam == 1 ? duel.getTeam1() : (wTeam == 2 ? duel.getTeam2() : Collections.emptyList());
@@ -140,7 +154,8 @@ public class DuelManager {
                 statsManager.recordLoss(p);
             }
         });
-        String kitName = duel.getKit().getName();
+        
+        String kitName = duel.getKit() != null ? duel.getKit().getName() : "Unknown";
         String winnerNames = (wTeam == 1 ? duel.getTeam1() : duel.getTeam2()).stream()
                 .map(Bukkit::getPlayer).filter(java.util.Objects::nonNull).map(Player::getName)
                 .collect(Collectors.joining(", "));
@@ -380,6 +395,10 @@ public class DuelManager {
     }
 
     public void startDuel(List<Player> team1, List<Player> team2, Kit kit, QueueMode mode, int rounds) {
+        if (kit == null) {
+            return;
+        }
+
         Arena arena = plugin.getArenaManager().getAvailableArena(kit.getName());
         if (arena == null) {
             team1.forEach(p -> MessageUtils.sendMessage(p, "duel.no-arenas"));
@@ -481,12 +500,17 @@ public class DuelManager {
     }
 
     private void applyKit(Player p, Kit kit) {
+        if (p == null || !p.isOnline() || kit == null) {
+            return;
+        }
+
         PlayerKit playerKit = plugin.getKitManager().getPlayerKit(p.getUniqueId(), kit.getName());
         if (playerKit != null) {
             p.getInventory().setContents(playerKit.getInventory());
             p.getInventory().setArmorContents(playerKit.getArmor());
-            if (playerKit.getOffhand() != null)
+            if (playerKit.getOffhand() != null) {
                 p.getInventory().setItemInOffHand(playerKit.getOffhand());
+            }
         } else {
             p.getInventory().setContents(kit.getInventory());
             p.getInventory().setArmorContents(kit.getArmor());
@@ -498,8 +522,15 @@ public class DuelManager {
     }
 
     public Player getOpponent(Player player) {
+        if (player == null) {
+            return null;
+        }
         Duel duel = getDuel(player);
-        return duel != null ? duel.getOpponent(player) : null;
+        if (duel == null) {
+            return null;
+        }
+        Player opponent = duel.getOpponent(player);
+        return opponent != null && opponent.isOnline() ? opponent : null;
     }
 
     public String getSelfRelation(Player player) {

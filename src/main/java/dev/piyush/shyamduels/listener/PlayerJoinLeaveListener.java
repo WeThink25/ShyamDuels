@@ -60,10 +60,19 @@ public class PlayerJoinLeaveListener implements Listener {
     }
 
     private void teleportToLobby(Player player) {
+        if (player == null || !player.isOnline()) {
+            return;
+        }
+
         String worldName = plugin.getConfig().getString("lobby.world", "spawn");
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-            world = Bukkit.getWorlds().get(0);
+            if (!Bukkit.getWorlds().isEmpty()) {
+                world = Bukkit.getWorlds().get(0);
+            } else {
+                plugin.getLogger().warning("No worlds available for teleport!");
+                return;
+            }
         }
 
         double x = plugin.getConfig().getDouble("lobby.x", 0);

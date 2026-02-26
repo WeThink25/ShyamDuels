@@ -1,73 +1,69 @@
-# ============================================
-# Spawn Items Configuration
-# ============================================
-# Items given to players in the lobby (not in party)
-# 
-# Item Options:
-#   slot: 0-8 (hotbar slot)
-#   material: Bukkit Material name
-#   name: Item display name (supports color codes)
-#   lore: List of lore lines
-#   commands: List of commands (prefix with "player:" or "console:")
-#   owner-only: Only show if player is party owner (optional)
-#   flags: ItemFlag list (e.g., HIDE_ATTRIBUTES)
-#   enchanted: true/false - adds glow effect
-# ============================================
-
 items:
   queue:
     slot: 0
-    material: IRON_SWORD
-    name: "&a&lJoin Queue"
-    lore:
-      - "&7"
-      - "&7Click to open queue menu"
-      - "&7and find a match!"
-    commands:
-      - "player:queue"
-    flags:
-      - HIDE_ATTRIBUTES
+    material: DIAMOND_SWORD
+    name: "&b&l⚔ Join Queue"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Click to open queue menu"
+      - "&f and find a match!"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:queue"]
+    flags: [HIDE_ATTRIBUTES]
+    enchanted: true
 
   ffa:
     slot: 1
     material: NETHERITE_SWORD
-    name: "&c&lFree For All"
-    lore:
-      - "&7"
-      - "&7Jump into FFA action!"
-    commands:
-      - "player:ffa"
-    flags:
-      - HIDE_ATTRIBUTES
+    name: "&c&l⚔ Free For All"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Jump into FFA action!"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:ffa"]
+    flags: [HIDE_ATTRIBUTES]
+    enchanted: true
 
   kit-editor:
     slot: 4
-    material: BOOK
-    name: "&e&lKit Editor"
-    lore:
-      - "&7"
-      - "&7Customize your kit layouts"
-    commands:
-      - "player:kiteditor"
+    material: ENCHANTED_BOOK
+    name: "&b&l✎ Kit Editor"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Customize your kit layouts"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:kiteditor"]
+    enchanted: true
 
   party-create:
     slot: 6
     material: NAME_TAG
-    name: "&d&lCreate Party"
-    lore:
-      - "&7"
-      - "&7Create a new party"
-      - "&7and invite your friends!"
-    commands:
-      - "player:party create"
+    name: "&b&l👥 Create Party"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Create a new party"
+      - "&f and invite your friends!"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:party create"]
     enchanted: true
 
   spectate:
     slot: 8
     material: ENDER_EYE
-    name: "&b&lSpectate"
-    lore:
-      - "&7"
-      - "&7Watch ongoing matches"
-    commands:
-      - "player:spectate"
+    name: "&b&l👁 Spectate"
+    lore: 
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+      - ""
+      - "&f Watch ongoing matches"
+      - ""
+      - "&7&m━━━━━━━━━━━━━━━━━━━━━"
+    commands: ["player:spectate"]
+    enchanted: true

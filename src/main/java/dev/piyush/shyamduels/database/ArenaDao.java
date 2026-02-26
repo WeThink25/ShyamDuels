@@ -57,6 +57,10 @@ public class ArenaDao {
     }
 
     public void saveArena(Arena arena) {
+        if (arena == null || arena.getName() == null) {
+            return;
+        }
+
         String sql = "REPLACE INTO arenas (name, world, corner1_x, corner1_y, corner1_z, corner2_x, corner2_y, corner2_z, spawn1, spawn2, center, allowed_kits, build_enabled, arena_type) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbManager.getArenaConnection();
@@ -95,7 +99,7 @@ public class ArenaDao {
             stmt.setString(1, name);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ShyamDuels.getInstance().getLogger().log(Level.WARNING, "Could not delete arena: " + name, e);
         }
     }
 
@@ -168,13 +172,27 @@ public class ArenaDao {
     }
 
     private org.bukkit.Location parseLoc(String s) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
         String[] parts = s.split(",");
-        if (parts.length < 6)
+        if (parts.length < 6) {
             return null;
-        org.bukkit.World w = org.bukkit.Bukkit.getWorld(parts[0]);
-        if (w == null)
+        }
+        try {
+            org.bukkit.World w = org.bukkit.Bukkit.getWorld(parts[0]);
+            if (w == null) {
+                return null;
+            }
+            return new org.bukkit.Location(w, 
+                Double.parseDouble(parts[1]), 
+                Double.parseDouble(parts[2]),
+                Double.parseDouble(parts[3]), 
+                Float.parseFloat(parts[4]), 
+                Float.parseFloat(parts[5]));
+        } catch (NumberFormatException e) {
+            ShyamDuels.getInstance().getLogger().log(Level.WARNING, "Failed to parse location: " + s, e);
             return null;
-        return new org.bukkit.Location(w, Double.parseDouble(parts[1]), Double.parseDouble(parts[2]),
-                Double.parseDouble(parts[3]), Float.parseFloat(parts[4]), Float.parseFloat(parts[5]));
+        }
     }
 }

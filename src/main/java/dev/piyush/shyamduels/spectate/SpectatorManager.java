@@ -80,21 +80,27 @@ public class SpectatorManager {
     }
 
     public void endSpectateForDuel(Duel duel) {
-        List<UUID> toRemove = new ArrayList<>();
+        if (duel == null) {
+            return;
+        }
 
-        for (Map.Entry<UUID, Duel> entry : spectatorToDuel.entrySet()) {
-            if (entry.getValue() != null && entry.getValue().equals(duel)) {
-                toRemove.add(entry.getKey());
+        List<UUID> toRemove = new ArrayList<>();
+        synchronized (spectatorToDuel) {
+            for (Map.Entry<UUID, Duel> entry : spectatorToDuel.entrySet()) {
+                if (entry.getValue() != null && entry.getValue().equals(duel)) {
+                    toRemove.add(entry.getKey());
+                }
             }
         }
 
         for (UUID uuid : toRemove) {
             Player spectator = Bukkit.getPlayer(uuid);
-            if (spectator != null) {
+            if (spectator != null && spectator.isOnline()) {
                 spectatorToDuel.remove(uuid);
                 MessageUtils.sendMessage(spectator, "spectate.match-ended");
                 plugin.getFFAManager().teleportToLobby(spectator);
                 spectator.setGameMode(GameMode.SURVIVAL);
+                plugin.getItemManager().giveSpawnItems(spectator);
             }
         }
     }
