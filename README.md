@@ -369,7 +369,7 @@ Conqueror (5000+)
 
 ## 📜 License
 
-**All Rights Reserved** - See [https://github.com/ShyamStudios/ShyamDuels/blob/main/LICENSE.md](https://github.com/ShyamStudios/ShyamDuels/blob/main/LICENSE.md)
+**All Rights Reserved** - See [https://github.com/ShyamStudios/ShyamDuels?tab=GPL-3.0-1-ov-file](https://github.com/ShyamStudios/ShyamDuels?tab=GPL-3.0-1-ov-file)
 
 - ✅ Personal use on your servers
 - ❌ No redistribution
@@ -385,3 +385,4 @@ Conqueror (5000+)
 [Report Bug](https://github.com/ShyamStudios/ShyamDuels/issues) · [Request Feature](https://github.com/ShyamStudios/ShyamDuels/issues)
 
 </div>
+
