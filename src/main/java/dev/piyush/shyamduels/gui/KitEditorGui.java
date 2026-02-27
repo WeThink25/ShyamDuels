@@ -223,13 +223,17 @@ public class KitEditorGui extends FastInv {
         armor[3] = getInventory().getItem(slotArmor[3]);
 
         ItemStack offhand = getInventory().getItem(slotOffhand);
-        if (offhand != null && offhand.getType() == Material.SHIELD
-                && offhand.hasItemMeta() && offhand.getItemMeta().hasDisplayName()) {
-            @SuppressWarnings("deprecation")
-            String dn = offhand.getItemMeta().getDisplayName();
-            if (dn.contains("Offhand")) {
-                offhand = null;
+        boolean isPlaceholder = false;
+        
+        if (offhand != null && offhand.getType() == Material.SHIELD && offhand.hasItemMeta()) {
+            String displayName = offhand.getItemMeta().displayName().toString();
+            if (displayName.contains("OFFHAND") || displayName.contains("offhand")) {
+                isPlaceholder = true;
             }
+        }
+        
+        if (isPlaceholder) {
+            offhand = null;
         }
 
         ItemStack[] inv = new ItemStack[36];
@@ -242,8 +246,6 @@ public class KitEditorGui extends FastInv {
         newPk.setArmor(armor);
         newPk.setOffhand(offhand);
 
-        plugin.getKitManager().savePlayerKit(newPk);
-        MessageUtils.sendMessage(player, "gui.kit-editor.messages.saved");
         plugin.getKitManager().savePlayerKit(newPk);
         MessageUtils.sendMessage(player, "gui.kit-editor.messages.saved");
         restoreInventory();
