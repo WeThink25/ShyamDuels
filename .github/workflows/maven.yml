@@ -29,11 +29,17 @@ jobs:
         run: |
           echo "TAG=dev-build-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
 
+
+      - name: Extract Commit Title
+        run: |
+          COMMIT_TITLE="$(git log -1 --pretty=%s)"
+          echo "COMMIT_TITLE=$COMMIT_TITLE" >> $GITHUB_ENV
+
       - name: Create GitHub Release + Upload JAR
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
-          name: Dev Build — ${{ github.event.head_commit.message }}
+          name: ${{ env.COMMIT_TITLE }}
           prerelease: true
           files: target/shyamduels-*.jar
           body: |
