@@ -4,7 +4,7 @@ main: dev.piyush.shyamduels.ShyamDuels
 api-version: '1.20'
 authors: [Piyush]
 description: High-performance dueling plugin with ELO, parties, FFA, and advanced kit system
-website:https://github.com/ShyamStudios/ShyamDuels
+website: https://github.com/ShyamStudios/ShyamDuels
 depend: [FastAsyncWorldEdit]
 softdepend: [PlaceholderAPI]
 libraries:
