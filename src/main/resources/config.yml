@@ -38,6 +38,7 @@ leavefight:
 
 ffa:
   reset-interval-seconds: 300
+  countdown-seconds: [5, 4, 3, 2, 1]
 
 duels:
   invite-expiration: 60
@@ -97,3 +98,38 @@ elo:
     grandmaster: {name: Grandmaster, colored: "&b&l[Grandmaster]", min-elo: 4000, max-elo: 4499, loss-multiplier: 2.25}
     legend: {name: Legend, colored: "&3&l[Legend]", min-elo: 4500, max-elo: 4999, loss-multiplier: 2.5}
     mythic: {name: Mythic, colored: "&b&l&n[Mythic]", min-elo: 5000, max-elo: 999999, loss-multiplier: 3.0}
+
+
+match-start:
+  countdown-seconds: [5, 4, 3, 2, 1]
+  sounds:
+    enabled: true
+    countdown-sound: BLOCK_NOTE_BLOCK_PLING
+    countdown-pitch: 1.0
+    fight-sound: ENTITY_ENDER_DRAGON_GROWL
+    fight-pitch: 1.5
+    good-luck-sound: ENTITY_PLAYER_LEVELUP
+    good-luck-pitch: 1.0
+
+killstreaks:
+  enabled: true
+  broadcast: true
+  tiers:
+    - kills: 5
+      name: "Killing Spree"
+    - kills: 10
+      name: "Rampage"
+    - kills: 15
+      name: "Dominating"
+    - kills: 20
+      name: "Unstoppable"
+    - kills: 25
+      name: "Godlike"
+
+death-messages:
+  enabled: true
+  customizable: true
+
+auto-gg:
+  enabled: true
+  delay-seconds: 2

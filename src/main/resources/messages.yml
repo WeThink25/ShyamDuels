@@ -204,3 +204,65 @@ party:
   size-mismatch: "&cParty sizes don't match! Your: {your_size}, Theirs: {their_size}"
   target-party-offline: "&cThe target party owner is offline."
   player-not-in-party: "&c{player} is not in your party."
+
+kit:
+  edited-kits-deleted: "&aDeleted &f{count} &aplayer edited kits for &f{name}&a. All players will now use the default kit."
+
+settings:
+  toggled: "&aSetting &f{setting} &ais now &f{status}&a!"
+  title: "&8Player Settings"
+
+killstreak:
+  tier1:
+    message: "&e&l⚔ &f{player} &eis on a &lKILLING SPREE &e(&l5 kills&e)!"
+  tier2:
+    message: "&6&l⚔ &f{player} &6is on a &lRAMPAGE &6(&l10 kills&6)!"
+  tier3:
+    message: "&c&l⚔ &f{player} &cis &lDOMINATING &c(&l15 kills&c)!"
+  tier4:
+    message: "&4&l⚔ &f{player} &4is &lUNSTOPPABLE &4(&l20 kills&4)!"
+  tier5:
+    message: "&5&l⚔ &f{player} &5is &lGODLIKE &5(&l25 kills&5)!"
+  ended:
+    message: "&c{killer} &7ended &e{victim}&7's &c{streak} kill streak&7!"
+
+death:
+  messages:
+    melee: "&c{victim} &7was slain by &a{killer}"
+    bow: "&c{victim} &7was shot by &a{killer}"
+    fall: "&c{victim} &7fell to their death"
+    void: "&c{victim} &7fell into the void"
+    fire: "&c{victim} &7burned to death"
+    lava: "&c{victim} &7tried to swim in lava"
+    explosion: "&c{victim} &7was blown up"
+    projectile: "&c{victim} &7was killed by &a{killer}&7's projectile"
+    magic: "&c{victim} &7was killed by magic"
+    suffocation: "&c{victim} &7suffocated"
+    drowning: "&c{victim} &7drowned"
+    generic: "&c{victim} &7died"
+
+match:
+  countdown:
+    title: "&c{seconds}"
+    subtitle: "&7Get ready to fight!"
+    message: "&eMatch starting in &c{seconds}&e..."
+    fight-title: "&c&lF&6&lI&e&lG&a&lH&b&lT&d&l!"
+    fight-subtitle: "&7Good luck!"
+    good-luck: "&a&lGOOD LUCK!"
+  auto-gg:
+    message: "&bGG!"
+    broadcast: "&7{player}: &bGG!"
+
+ffa:
+  countdown:
+    title: "&c{seconds}"
+    subtitle: "&7Prepare for battle!"
+    message: "&eStarting in &c{seconds}&e..."
+    fight-title: "&c&lF&6&lI&e&lG&a&lH&b&lT&d&l!"
+    fight-subtitle: "&7Good luck!"
+
+
+effects:
+  selected: "&aSelected kill effect: &f{effect}"
+  locked: "&c{effect} &7is locked! Required ELO: &f{elo}"
+  unlocked: "&aYou unlocked a new kill effect: &f{effect}&a!"

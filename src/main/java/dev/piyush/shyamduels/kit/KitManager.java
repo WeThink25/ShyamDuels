@@ -110,4 +110,22 @@ public class KitManager {
         });
     }
 
+    public int deleteAllPlayerKits(String kitName) {
+        int count = 0;
+        for (java.util.UUID uuid : playerKitCache.asMap().keySet()) {
+            java.util.Map<String, PlayerKit> userKits = playerKitCache.getIfPresent(uuid);
+            if (userKits != null && userKits.containsKey(kitName.toLowerCase())) {
+                userKits.remove(kitName.toLowerCase());
+                count++;
+            }
+        }
+
+        final int finalCount = count;
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            playerKitDao.deleteAllPlayerKitsForKit(kitName);
+        });
+
+        return finalCount;
+    }
+
 }

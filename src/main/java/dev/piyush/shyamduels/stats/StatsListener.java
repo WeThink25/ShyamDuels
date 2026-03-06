@@ -20,6 +20,7 @@ public class StatsListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             statsManager.loadPlayer(event.getPlayer());
+            plugin.getSettingsManager().getSettings(event.getPlayer().getUniqueId());
         });
     }
 
@@ -27,6 +28,7 @@ public class StatsListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             statsManager.unloadPlayer(event.getPlayer());
+            plugin.getSettingsManager().unloadPlayer(event.getPlayer().getUniqueId());
         });
     }
 }

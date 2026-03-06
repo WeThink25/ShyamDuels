@@ -40,6 +40,8 @@ public class ShyamDuels extends JavaPlugin {
     private dev.piyush.shyamduels.party.PartySplitManager partySplitManager;
     private dev.piyush.shyamduels.item.ItemManager itemManager;
     private dev.piyush.shyamduels.scoreboard.ScoreboardManager scoreboardManager;
+    private dev.piyush.shyamduels.settings.SettingsManager settingsManager;
+    private dev.piyush.shyamduels.effects.KillEffectManager killEffectManager;
 
     @Override
     public void onEnable() {
@@ -74,6 +76,12 @@ public class ShyamDuels extends JavaPlugin {
                 databaseManager);
         statsDao.createTable();
         this.statsManager = new dev.piyush.shyamduels.stats.StatsManager(this, statsDao);
+
+        dev.piyush.shyamduels.database.PlayerSettingsDao settingsDao = new dev.piyush.shyamduels.database.PlayerSettingsDao(databaseManager);
+        settingsDao.createTable();
+        this.settingsManager = new dev.piyush.shyamduels.settings.SettingsManager(this, settingsDao);
+
+        this.killEffectManager = new dev.piyush.shyamduels.effects.KillEffectManager(this);
 
         this.commandManager = new PaperCommandManager(this);
         registerCommands();
@@ -140,6 +148,10 @@ public class ShyamDuels extends JavaPlugin {
             statsManager.saveAllPlayers();
         }
 
+        if (settingsManager != null) {
+            settingsManager.saveAll();
+        }
+
         if (databaseManager != null) {
             databaseManager.close();
         }
@@ -174,6 +186,10 @@ public class ShyamDuels extends JavaPlugin {
                 new dev.piyush.shyamduels.command.PartyCommand(this));
         commandManager.registerCommand(
                 new dev.piyush.shyamduels.command.PartyChatCommand(this));
+        commandManager.registerCommand(
+                new dev.piyush.shyamduels.command.SettingsCommand(this));
+        commandManager.registerCommand(
+                new dev.piyush.shyamduels.command.EffectsCommand(this));
 
         commandManager.getCommandCompletions().registerAsyncCompletion(
                 "arenas",
@@ -255,5 +271,13 @@ public class ShyamDuels extends JavaPlugin {
 
     public dev.piyush.shyamduels.scoreboard.ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
+    }
+
+    public dev.piyush.shyamduels.settings.SettingsManager getSettingsManager() {
+        return settingsManager;
+    }
+
+    public dev.piyush.shyamduels.effects.KillEffectManager getKillEffectManager() {
+        return killEffectManager;
     }
 }

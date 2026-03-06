@@ -39,11 +39,54 @@ public class FFAListener implements Listener {
     public void onDeath(PlayerDeathEvent e) {
         Player player = e.getEntity();
         if (ffaManager.getPlayerState(player) == FFAManager.FFAState.IN_FFA) {
-            boolean dropsEnabled = plugin.getConfig().getBoolean("item-drops.enabled", false);
-
-            if (dropsEnabled && player.getKiller() != null) {
-                Player killer = player.getKiller();
-                if (ffaManager.getPlayerState(killer) == FFAManager.FFAState.IN_FFA) {
+            Player killer = player.getKiller();
+            
+            if (plugin.getConfig().getBoolean("death-messages.enabled", true)) {
+                e.deathMessage(null);
+                
+                if (plugin.getSettingsManager().getSettings(player.getUniqueId()).isDeathMessages()) {
+                    String deathMsg = getDeathMessage(player, killer, e);
+                    if (deathMsg != null) {
+                        Arena arena = ffaManager.getPlayerArena(player);
+                        if (arena != null) {
+                            broadcastToArena(arena, deathMsg);
+                        }
+                    }
+                }
+            }
+            
+            if (killer != null && ffaManager.getPlayerState(killer) == FFAManager.FFAState.IN_FFA) {
+                dev.piyush.shyamduels.stats.PlayerStats killerStats = plugin.getStatsManager().getStats(killer.getUniqueId());
+                dev.piyush.shyamduels.stats.PlayerStats victimStats = plugin.getStatsManager().getStats(player.getUniqueId());
+                
+                killerStats.addKill();
+                victimStats.addDeath();
+                
+                int streak = killerStats.getKillstreak();
+                int victimStreak = victimStats.getKillstreak();
+                
+                if (victimStreak >= 5 && plugin.getConfig().getBoolean("killstreaks.enabled", true)) {
+                    String endMsg = MessageUtils.getMessage("killstreak.ended.message")
+                        .replace("{killer}", killer.getName())
+                        .replace("{victim}", player.getName())
+                        .replace("{streak}", String.valueOf(victimStreak));
+                    Arena arena = ffaManager.getPlayerArena(player);
+                    if (arena != null) {
+                        broadcastToArena(arena, endMsg);
+                    }
+                }
+                
+                victimStats.setKillstreak(0);
+                
+                plugin.getKillEffectManager().playEffect(killer, player.getLocation().clone());
+                
+                if (plugin.getConfig().getBoolean("killstreaks.enabled", true) && 
+                    plugin.getSettingsManager().getSettings(killer.getUniqueId()).isKillstreakMessages()) {
+                    announceKillstreak(killer, streak);
+                }
+                
+                boolean dropsEnabled = plugin.getConfig().getBoolean("item-drops.enabled", false);
+                if (dropsEnabled) {
                     java.util.List<org.bukkit.inventory.ItemStack> drops = new java.util.ArrayList<>(e.getDrops());
                     final String victimName = player.getName();
 
@@ -64,6 +107,117 @@ public class FFAListener implements Listener {
 
             Bukkit.getScheduler().runTaskLater(plugin, () -> player.spigot().respawn(), 1L);
             Bukkit.getScheduler().runTaskLater(plugin, () -> ffaManager.handleDeath(player), 2L);
+        }
+    }
+    
+    private String getDeathMessage(Player victim, Player killer, PlayerDeathEvent e) {
+        String msgKey = "death.messages.generic";
+        
+        if (killer != null) {
+            if (e.getEntity().getLastDamageCause() instanceof org.bukkit.event.entity.EntityDamageByEntityEvent) {
+                org.bukkit.event.entity.EntityDamageByEntityEvent dmgEvent = 
+                    (org.bukkit.event.entity.EntityDamageByEntityEvent) e.getEntity().getLastDamageCause();
+                
+                if (dmgEvent.getDamager() instanceof org.bukkit.entity.Arrow) {
+                    msgKey = "death.messages.bow";
+                } else if (dmgEvent.getDamager() instanceof org.bukkit.entity.Projectile) {
+                    msgKey = "death.messages.projectile";
+                } else {
+                    msgKey = "death.messages.melee";
+                }
+            }
+        } else {
+            org.bukkit.event.entity.EntityDamageEvent.DamageCause cause = e.getEntity().getLastDamageCause().getCause();
+            switch (cause) {
+                case FALL:
+                    msgKey = "death.messages.fall";
+                    break;
+                case VOID:
+                    msgKey = "death.messages.void";
+                    break;
+                case FIRE:
+                case FIRE_TICK:
+                    msgKey = "death.messages.fire";
+                    break;
+                case LAVA:
+                    msgKey = "death.messages.lava";
+                    break;
+                case BLOCK_EXPLOSION:
+                case ENTITY_EXPLOSION:
+                    msgKey = "death.messages.explosion";
+                    break;
+                case MAGIC:
+                case POISON:
+                case WITHER:
+                    msgKey = "death.messages.magic";
+                    break;
+                case SUFFOCATION:
+                    msgKey = "death.messages.suffocation";
+                    break;
+                case DROWNING:
+                    msgKey = "death.messages.drowning";
+                    break;
+                case LIGHTNING:
+                case SONIC_BOOM:
+                case CRAMMING:
+                case MELTING:
+                case FLY_INTO_WALL:
+                case HOT_FLOOR:
+                case DRAGON_BREATH:
+                case CONTACT:
+                case FALLING_BLOCK:
+                case ENTITY_SWEEP_ATTACK:
+                case THORNS:
+                case SUICIDE:
+                case PROJECTILE:
+                case WORLD_BORDER:
+                case CUSTOM:
+                case DRYOUT:
+                case STARVATION:
+                case ENTITY_ATTACK:
+                case FREEZE:
+                case KILL:
+                default:
+                    msgKey = "death.messages.generic";
+                    break;
+            }
+        }
+        
+        String msg = MessageUtils.getMessage(msgKey);
+        msg = msg.replace("{victim}", victim.getName());
+        if (killer != null) {
+            msg = msg.replace("{killer}", killer.getName());
+        }
+        return msg;
+    }
+    
+    private void announceKillstreak(Player player, int streak) {
+        String tierKey = null;
+        
+        if (streak == 5) tierKey = "killstreak.tier1";
+        else if (streak == 10) tierKey = "killstreak.tier2";
+        else if (streak == 15) tierKey = "killstreak.tier3";
+        else if (streak == 20) tierKey = "killstreak.tier4";
+        else if (streak == 25) tierKey = "killstreak.tier5";
+        
+        if (tierKey != null) {
+            String message = MessageUtils.getMessage(tierKey + ".message")
+                .replace("{player}", player.getName());
+            
+            if (plugin.getConfig().getBoolean("killstreaks.broadcast", true)) {
+                Arena arena = ffaManager.getPlayerArena(player);
+                if (arena != null) {
+                    broadcastToArena(arena, message);
+                }
+            }
+        }
+    }
+    
+    private void broadcastToArena(Arena arena, String message) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (ffaManager.isInArena(p, arena)) {
+                p.sendMessage(MessageUtils.color(message));
+            }
         }
     }
 

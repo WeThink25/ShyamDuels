@@ -160,6 +160,10 @@ public class MessageUtils {
         return ShyamDuels.getInstance().getConfigManager().getMessages().getString(path, path);
     }
 
+    public static String getMessage(String path) {
+        return get(path);
+    }
+
     public static String get(String path, Map<String, String> placeholders) {
         String msg = get(path);
         for (Map.Entry<String, String> entry : placeholders.entrySet()) {

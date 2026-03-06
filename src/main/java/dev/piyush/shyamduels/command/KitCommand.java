@@ -190,4 +190,20 @@ public class KitCommand extends BaseCommand {
         MessageUtils.sendMessage(player, "general.usage",
                 Map.of("usage", "Removed " + hand.getType().name() + " from whitelist for kit " + name));
     }
+
+    @Subcommand("deleteeditedkits")
+    @CommandCompletion("@kits")
+    @Syntax("<kitname>")
+    @Description("Delete all player edited kits for a specific kit")
+    public void onDeleteEditedKits(Player player, String kitName) {
+        Kit kit = kitManager.getKit(kitName);
+        if (kit == null) {
+            MessageUtils.sendMessage(player, "kit.not-found", Map.of("name", kitName));
+            return;
+        }
+
+        int deleted = kitManager.deleteAllPlayerKits(kitName);
+        MessageUtils.sendMessage(player, "kit.edited-kits-deleted",
+            Map.of("name", kitName, "count", String.valueOf(deleted)));
+    }
 }

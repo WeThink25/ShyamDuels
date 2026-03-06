@@ -109,4 +109,14 @@ public class PlayerKitDao {
             ShyamDuels.getInstance().getLogger().log(Level.SEVERE, "Could not delete player kit", e);
         }
     }
+
+    public void deleteAllPlayerKitsForKit(String kitName) {
+        String sql = "DELETE FROM player_kits WHERE kit_name = ?";
+        try (PreparedStatement stmt = dbManager.getKitConnection().prepareStatement(sql)) {
+            stmt.setString(1, kitName);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            ShyamDuels.getInstance().getLogger().log(Level.SEVERE, "Could not delete all player kits for kit: " + kitName, e);
+        }
+    }
 }

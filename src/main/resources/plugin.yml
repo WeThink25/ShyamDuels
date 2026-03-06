@@ -36,7 +36,7 @@ commands:
   ffa:
     description: Join Free For All mode
     usage: /ffa [arena]
-    aliases: [freefora ll]
+    aliases: [freeforall]
   
   queue:
     description: Join ranked matchmaking
@@ -85,3 +85,13 @@ commands:
     description: Toggle party chat mode
     usage: /partychat
     aliases: [pc, pchat]
+  
+  settings:
+    description: Open player settings menu
+    usage: /settings
+    aliases: [preferences, prefs]
+  
+  effects:
+    description: Open kill effects menu
+    usage: /effects
+    aliases: [killeffects, ke]

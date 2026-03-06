@@ -123,24 +123,52 @@ public class FFAManager {
         arenaPlayerCounts.compute(arena.getName(), (k, v) -> v == null ? 1 : v + 1);
 
         final Kit finalKit = kit;
+        java.util.List<Integer> countdownList = plugin.getConfig().getIntegerList("ffa.countdown-seconds");
+        if (countdownList.isEmpty()) {
+            countdownList = java.util.Arrays.asList(5, 4, 3, 2, 1);
+        }
+        final java.util.List<Integer> countdown = new java.util.ArrayList<>(countdownList);
+        boolean soundsEnabled = plugin.getConfig().getBoolean("match-start.sounds.enabled", true);
+        
         new Runnable() {
-            int count = 3;
+            int index = 0;
 
             @Override
             public void run() {
                 if (!player.isOnline() || !playerStates.containsKey(player.getUniqueId()))
                     return;
 
-                if (count > 0) {
-                    player.sendTitle(MessageUtils.color("&c" + count), "", 0, 20, 10);
-                    MessageUtils.sendActionBar(player, "ffa.starting-in", Map.of("time", String.valueOf(count)));
-                    player.sendMessage(MessageUtils.color("&eStarting in &c" + count + "..."));
-                    player.playSound(player.getLocation(), org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                    count--;
+                if (index < countdown.size()) {
+                    int count = countdown.get(index);
+                    String color = count <= 3 ? "&c" : "&e";
+                    player.sendTitle(MessageUtils.color(color + count), 
+                        MessageUtils.getMessage("ffa.countdown.subtitle"), 0, 20, 10);
+                    MessageUtils.sendMessage(player, "ffa.countdown.message", Map.of("seconds", String.valueOf(count)));
+                    
+                    if (soundsEnabled && plugin.getSettingsManager().getSettings(player.getUniqueId()).isMatchStartSounds()) {
+                        String soundName = plugin.getConfig().getString("match-start.sounds.countdown-sound", "BLOCK_NOTE_BLOCK_PLING");
+                        float pitch = (float) plugin.getConfig().getDouble("match-start.sounds.countdown-pitch", 1.0);
+                        try {
+                            org.bukkit.Sound sound = org.bukkit.Sound.valueOf(soundName);
+                            player.playSound(player.getLocation(), sound, 1f, pitch);
+                        } catch (IllegalArgumentException ignored) {}
+                    }
+                    
+                    index++;
                     Bukkit.getScheduler().runTaskLater(plugin, this, 20L);
                 } else {
-                    player.sendTitle(MessageUtils.color("&c&lFIGHT!"), "", 5, 20, 5);
-                    player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.5f);
+                    player.sendTitle(MessageUtils.getMessage("ffa.countdown.fight-title"), 
+                        MessageUtils.getMessage("ffa.countdown.fight-subtitle"), 5, 20, 5);
+                    
+                    if (soundsEnabled && plugin.getSettingsManager().getSettings(player.getUniqueId()).isMatchStartSounds()) {
+                        String soundName = plugin.getConfig().getString("match-start.sounds.fight-sound", "ENTITY_ENDER_DRAGON_GROWL");
+                        float pitch = (float) plugin.getConfig().getDouble("match-start.sounds.fight-pitch", 1.5);
+                        try {
+                            org.bukkit.Sound sound = org.bukkit.Sound.valueOf(soundName);
+                            player.playSound(player.getLocation(), sound, 1f, pitch);
+                        } catch (IllegalArgumentException ignored) {}
+                    }
+                    
                     playerStates.put(player.getUniqueId(), FFAState.IN_FFA);
                     applyFFAKit(player, finalKit);
                 }
